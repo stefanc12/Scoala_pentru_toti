@@ -1,120 +1,157 @@
-PLATFORMA EDUCATIONALA
-Scoala pentru toți
-TEHNICI WEB
+# PLATFORMA EDUCATIONALA  
+## Scoala pentru toti
 
-Scoala pentru toți este o platformă educațională online destinată elevilor și studenților care doresc să învețe într-un mod organizat și interactiv. Site-ul va oferi acces la lecții teoretice, exerciții practice și teste de evaluare pentru diferite domenii de studiu.
-Platforma urmărește combinarea metodelor moderne de e-learning cu exercițiul practic, inspirându-se din platforme educaționale consacrate. De asemenea, modul de organizare a exercițiilor va prelua anumite idei din site-uri precum PBInfo sau Coursera, unde utilizatorii pot exersa și aplica noțiunile învățate.
-Scopul principal este crearea unui spațiu digital unde utilizatorii pot:
-învăța concepte noi;
-exersa prin aplicații practice;
-verifica nivelul de cunoștințe;
-urmări progresul personal.
-Public țintă:
-elevi de gimnaziu și liceu;
-studenți;
-persoane interesate de autoînvățare online.
-Exerciții
-exerciții pe capitole cu explicații
-aplicații practice
-Modele de examen si admitere la facultati din domeniu
-teste de tip grila
-evaluări pe capitole
-teste finale
-Resurse
-articole educaționale
-programe școlare
-ghiduri de învățare
-Culegeri publicate de profesori / facultăți
-cărți de specialitate
-Cont utilizator
-progres
-rezultate teste
-cursuri salvate
-acces la consultații 1 la 1 (contra cost)
+Scoala pentru toti este o platforma educationala online destinata elevilor si studentilor care doresc sa invete intr-un mod organizat si interactiv. Site-ul ofera acces la lectii teoretice, exercitii practice si teste de evaluare pentru diferite domenii de studiu.
 
+Platforma urmareste combinarea metodelor moderne de e-learning cu exercitiul practic, inspirandu-se din platforme educationale consacrate. De asemenea, modul de organizare a exercitiilor preia anumite idei din site-uri precum PBInfo sau Coursera, unde utilizatorii pot exersa si aplica notiunile invatate.
 
-Platforma va avea 5 pagini principale:
-1. Home
-prezentarea platformei;
-domenii disponibile;
-cursuri recomandate;
-acces rapid către secțiuni.
-2. Cursuri
-lecții organizate pe materii;
-fiecare lecție conține exemple și trimiteri către exerciții.
-3. Exerciții
-listă de exerciții filtrabile;
-aplicarea practică a lectiilor studiate;
-nivel de dificultate afișat.
-4. Teste
-evaluări automate;
-afișarea scorului final.
-Modele de bacalaureat, admitere și evaluare nationala
-5. Cont Utilizator
-progres personal;
-activitate recentă;
-rezultate obținute.
-Legături între pagini:
-Cursuri → Exerciții aferente;
-Exerciții → Lecții explicative;
-Teste → capitole studiate;
-Cont → activitatea din toate secțiunile
-4. Stabilirea cuvintelor cheie
-Cuvinte cheie generale:
-platformă educațională
-cursuri online
-învățare interactivă
-educație digitală
-exerciții online
-e-learning
-Pagina Home:
-educație online
-platformă de învățare
-cursuri digitale
-Pagina Cursuri:
-lecții online
-materiale educaționale
-învățare structurată
-Pagina Exerciții:
-exerciții practice
-exercitii mate
-exerciții info
-învățare prin practică
-Pagina Teste:
-teste de antrenament
-verificare cunoștințe
+Scopul principal este crearea unui spatiu digital unde utilizatorii pot:
+- invata concepte noi;
+- exersa prin aplicatii practice;
+- verifica nivelul de cunostinte;
+- urmari progresul personal.
 
-Pentru o bună structurare a acestui site, am ales sa mă inspir din următoarele pagini web: 
-1. https://www.pbinfo.ro
+## Public tinta
+
+- elevi de gimnaziu si liceu;
+- studenti;
+- persoane interesate de autoinvatare online.
+
+## Exercitii
+
+- exercitii pe capitole cu explicatii;
+- aplicatii practice;
+- modele de examen si admitere la facultati din domeniu.
+
+## Teste
+
+- teste de tip grila;
+- evaluari pe capitole;
+- teste finale.
+
+## Resurse
+
+- articole educationale;
+- programe scolare;
+- ghiduri de invatare;
+- culegeri publicate de profesori sau facultati;
+- carti de specialitate.
+
+## Cont utilizator
+
+- progres;
+- rezultate teste;
+- cursuri salvate;
+- acces la consultatii 1 la 1 (contra cost).
+
+## Structura platformei
+
+Platforma va avea 5 pagini principale.
+
+### 1. Home
+- prezentarea platformei;
+- domenii disponibile;
+- cursuri recomandate;
+- acces rapid catre sectiuni.
+
+### 2. Cursuri
+- lectii organizate pe materii;
+- fiecare lectie contine exemple si trimiteri catre exercitii.
+
+### 3. Exercitii
+- lista de exercitii filtrabile;
+- aplicarea practica a lectiilor studiate;
+- nivel de dificultate afisat.
+
+### 4. Teste
+- evaluari automate;
+- afisarea scorului final;
+- modele de bacalaureat, admitere si evaluare nationala.
+
+### 5. Cont Utilizator
+- progres personal;
+- activitate recenta;
+- rezultate obtinute.
+
+## Legaturi intre pagini
+
+- Cursuri → Exercitii aferente;
+- Exercitii → Lectii explicative;
+- Teste → capitole studiate;
+- Cont → activitatea din toate sectiunile.
+
+## Stabilirea cuvintelor cheie
+
+### Cuvinte cheie generale
+- platforma educationala;
+- cursuri online;
+- invatare interactiva;
+- educatie digitala;
+- exercitii online;
+- e-learning.
+
+### Pagina Home
+- educatie online;
+- platforma de invatare;
+- cursuri digitale.
+
+### Pagina Cursuri
+- lectii online;
+- materiale educationale;
+- invatare structurata.
+
+### Pagina Exercitii
+- exercitii practice;
+- exercitii mate;
+- exercitii info;
+- invatare prin practica.
+
+### Pagina Teste
+- teste de antrenament;
+- verificare cunostinte.
+
+## Platforme care au inspirat proiectul
+
+### 1. https://www.pbinfo.ro
+
 Pro:
-organizare eficientă a exercițiilor;
-clasificare clară pe dificultate și capitole.
+- organizare eficienta a exercitiilor;
+- clasificare clara pe dificultate si capitole.
+
 Contra:
-design vizual mai puțin modern;
-accent aproape exclusiv pe informatică.
+- design vizual mai putin modern;
+- accent aproape exclusiv pe informatica.
+
 Idei preluate:
-structurarea exercițiilor;
-legătura între teorie și practică.
-2. https://www.coursera.org
-Pro:
-structură clară a cursurilor;
-urmărirea progresului utilizatorului.
-Contra:
-acces limitat fără plată;
-uneori navigare complexă.
+- structurarea exercitiilor;
+- legatura intre teorie si practica.
 
-3. https://www.udemy.com
-Pro:
-diversitate mare de domenii;
-sistem eficient de filtrare.
-Contra:
-calitate variabilă a cursurilor;
-interfață aglomerată.
+### 2. https://www.coursera.org
 
-4. https://www.codecademy.com
 Pro:
-exerciții interactive;
-feedback instant.
+- structura clara a cursurilor;
+- urmarirea progresului utilizatorului.
+
 Contra:
-multe funcții premium;
-domenii limitate.
+- acces limitat fara plata;
+- uneori navigare complexa.
+
+### 3. https://www.udemy.com
+
+Pro:
+- diversitate mare de domenii;
+- sistem eficient de filtrare.
+
+Contra:
+- calitate variabila a cursurilor;
+- interfata aglomerata.
+
+### 4. https://www.codecademy.com
+
+Pro:
+- exercitii interactive;
+- feedback instant.
+
+Contra:
+- multe functii premium;
+- domenii limitate.
