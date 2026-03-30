@@ -1,0 +1,22 @@
+@startuml
+
+skinparam linetype ortho
+
+rectangle "Domeniu" as Domeniu
+rectangle "Curs" as Curs
+rectangle "Lecție" as Lectie
+rectangle "Test" as Test
+rectangle "Exercițiu" as Exercitiu
+rectangle "Utilizator" as Utilizator
+rectangle "RezultatTest" as RezultatTest
+rectangle "Consultație" as Consultatie
+
+Domeniu "1(1)" --- "m(0)" Curs
+Curs "1(1)" --- "m(0)" Lectie
+Curs "1(1)" --- "m(0)" Test
+Lectie "1(1)" --- "m(0)" Exercitiu
+Utilizator "m(0)" --- "m(0)" Curs
+Utilizator "1(1)" --- "m(0)" RezultatTest
+Test "1(1)" --- "m(0)" RezultatTest
+Utilizator "1(1)" --- "m(0)" Consultatie
+@enduml

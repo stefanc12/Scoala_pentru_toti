@@ -3,346 +3,255 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PLATFORMA EDUCATIONALA</title>
-    <meta name="author" content="Adrian Stefan Cornaciu">
+    <title>Școala pentru toți - Platformă Educațională</title>
+    <meta name="author" content="Cornaciu Adrian Ștefan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="O platformă educațională modernă oferă acces rapid la lecții interactive, resurse variate și instrumente care sprijină învățarea personalizată.">
-    <meta name="keywords" content="cofetarie, Dulcelind, cofetaria Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+    <meta name="description" content="Școala pentru toți este o platformă educațională online destinată elevilor și studenților pentru învățare interactivă, exerciții și teste.">
+    <meta name="keywords" content="platformă educațională, cursuri online, învățare interactivă, educație digitală, e-learning, matematică, informatică">
+    
     <link rel="icon" type="image/png" href="./resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="./resurse/imagini/favicon/favicon.svg" />
     <link rel="shortcut icon" href="./resurse/imagini/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="./resurse/imagini/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="./resurse/imagini/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="./Resurse/CSS/general.css" type="text/css"/>
 </head>
 
 <body>
     <header>
-        <h1>Tehnici web</h1> 
-        <img src="sigla.png" alt="sigla" />
+        <h1>Școala pentru toți</h1> 
+        <img src="resurse/imagini/sigla.png" alt="Sigla platformei educaționale" />
         <nav>   
             <ul>    
-                <li>Acasa
+                <li>Acasă
                     <ul>
-                        <li><a href = "#welcome">Bine ati venit</a></li>
-                        <li><a href = "#promotii">Promotii</a></li>
+                        <li><a href="#welcome">Despre noi</a></li>
+                        <li><a href="#noutati">Noutăți și Pachete</a></li>
                     </ul>
                 </li>
-
-                <li>Despre</li>
-                <li>Produse</li>
+                <li><a href="cursuri.html">Cursuri și Lecții</a></li>
+                <li><a href="exercitii.html">Exerciții Practice</a></li>
+                <li><a href="teste.html">Teste de Evaluare</a></li>
+                <li><a href="cont.html">Contul meu</a></li>
             </ul>
         </nav>
     </header>
-    <main> <!--  comentariu -->
+
+    <main>
         <div id="grid-pagina">
 
             <section id="welcome">
                 <hgroup>
-                    <h2>Bine ati venit</h2>
-                    <p class="subtitlu">Prezentarea cofetăriei</p>
+                    <h2>Bine ați venit!</h2>
+                    <p class="subtitlu">Prezentarea platformei educaționale</p>
                 </hgroup>
 
-                <p class="intro">Vă mulțumim că ne vizitați site-ul. Luați de aici niște biscuiți virtuali. Poftă bună!</p>
+                <p class="intro">Vă mulțumim că ne vizitați platforma. Vă oferim un mediu sigur pentru a învăța concepte noi. Spor la studiu!</p>
                 
-                <div class="intro-oferte"><div>Pateuri</div><div>Bomboane</div><div>Fursecuri</div><div>Prajituri</div><div>Torturi</div></div>
-                <p class="anunt intro">Vă puteți îngrășa atât la sediul nostru cât și la propriul dumneavoastră domiciliu, cu ajutorul ofertei noastre de livrare a produselor prin curier.</p>
-                <div id="dv-prezentare-1">
-                    <div id="dv-prezentare">
+                <p>Educația este esențială. Așa cum spunea marele <cite>Nelson Mandela</cite>, <q>Educația este cea mai puternică armă pe care o poți folosi pentru a schimba lumea.</q></p>
+
+                <div id="dv-prezentare">
                     <picture>
-                        <!-- il ia pe primul care se potriveste cu query-ul din media-->
-                        <source srcset="./resurse/imagini/macarons-200x200.jpg" media="(max-width:700px)"/>
-                        <source srcset="./resurse/imagini/macarons.jpg" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/macarons-640x360.jpg" alt="text"/>
+                        <source srcset="./resurse/imagini/elevi-200x200.jpg" media="(max-width:700px)"/>
+                        <source srcset="./resurse/imagini/elevi.jpg" media="(max-width:1200px)"/>
+                        <img src="./resurse/imagini/elevi-640x360.jpg" alt="Elevi învățând la laptop"/>
                     </picture>
                 </div>
-            </div>
-            <hr class="prajituri"/>
-            <div id="container-video">
-                <img style="width:50%" class="farfurie" src="resurse/imagini/farfurie-flori-albastre.png" alt="farfurie" title="O farfurie cu flori">
-                <div id="centrare-video">
-                    <div id="clip-video">
-                        <div id="stil-video">
-                            <video width="320" height="240"  playsinline autoplay loop muted>
-                                <source src="resurse/video/Chocolate.mp4" type="video/mp4">
-                                <source src="resurse/video/Chocolate.ogv" type="video/ogv">
-                                <track default src="data:image/png;base64, V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo=" kind="captions" srclang="ro" label="romana">
-                                <track src="data:image/png;base64, V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo=" kind="captions" srclang="en" label="engleza">
-                            </video>
-                        </div>
+            
+                <hr class="separator"/>
+
+                <div id="container-video">
+                    <h3>Cum funcționează învățarea interactivă?</h3>
+                    <div id="stil-video">
+                        <video width="320" height="240" controls loop muted preload="auto">
+                            <source src="resurse/video/tutorial_platforma.mp4" type="video/mp4">
+                            <source src="resurse/video/tutorial_platforma.ogv" type="video/ogv">
+                            <track src="data:image/png;base64,V0VCVlRU..." kind="captions" srclang="ro" label="Română" default>
+                            <track src="data:image/png;base64,V0VCVlRU..." kind="captions" srclang="en" label="Engleză">
+                            Browser-ul tău nu suportă elementul video.
+                        </video>
                     </div>
                 </div>
-            </div>
             </section>
-            <section id="promotii">
-                <h2>Promoții și oferte</h2>
-                <article>
-                    <h3 class="titlu">Super ofertă de weekend</h3>
-                    <p><b>Cofetăria Dulcelind</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate produsele cumpărate în intervalul 10-14.</p>
-                    <p>Oferta este valabilă doar în zilele de sâmbătă și duminică la sediile <abbr title="Cofetăria Dulcelind">CD</abbr>.</p>
-                    <p>în cazul în care cumpărați mai mult de zece <b>prăjituri</b> primiți si un card de fidelitate pentru Salvare!</p>
-                </article>
-                <article>
-                    <h3>Ofertă pachet</h3>
-                    <p>Cofetăria Dulcelind oferă pachete cuprinzând:</p>
-                    <ol>
-                        <li><i lang="en">icecream</i></li>
-                        <li>Un set de 4 pateuri de sortimente diferite</li>
-                        <li>O prajitură la alegere</li>
-                        <li>Un <i>suc</i></li>
-                        <li>Gratis: o farfurioară ornata cu inițiala cofetăriei</li>
-                        <li>Gratis: o felicitare cu imaginea cofetăriei</li>
-                        <li>Gratis: un pui de pisică (am găsit niște pui de pisică abandonați lângă cofetărie și noi nu îi putem păstra. Nu ne reclamați la ANPC, <!--abreviere--> mulțumim de înțelegere!).  </li>
-                    </ol>
-                    
-                </article>
-                <article>
-                    <h3>Prajituri de Halloween</h3>
-                    <p>Noi punem suflet în prăjiturile noastre!... Literalmente!</p>
-                    <p>Chiar și dacă nu e Halloween încă, avem prajituri bântuite, de toate dimensiunile</p>
-                    <ol>
-                        <li>Când vreți să gustați o prajitura, aceasta țipă, sau, mai rău, vă spune sincer că ar cam trebui să vă mai spălați pe dinți.</li>
-                        <li>Când puneți mai multe prăjituri pe platou, vor conspira împotriva dumneavoastră... hehe... dar n-au ce să vă facă, în final sunt doar niște prăjituri</li>
-                        <li>Nu încercați să mușcați vreun fursec de Halloween, căci va mușca el înainte. Ați fost avertizați.</li>
 
-                    </ol>
-                    
-                </article>
+            <section id="noutati">
+                <h2>Noutăți și Pachete Educaționale</h2>
                 <article>
-                    <h3>Prăjituri de Anul Nou</h3>
-                    <p>La începutul fiecărui an vă faceți planuri că de data asta veti trăi mai sănatos, veți mânca mai chibzuit și vă veți duce din prima zi la sală. Știm cu toții că e doar o amăgire. Luați mai bine o prăjitură, măcar să va delectați cu un gust bun și dulce în timp ce plângeți despre kilogramele în plus.</p>
-                    
+                    <h3 class="titlu">Super ofertă pentru Evaluarea Națională</h3>
+                    <p>Platforma <b>Școala pentru toți</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru pachetele premium achiziționate în luna curentă.</p>
+                    <p>Înțelegem conceptul de <dfn>e-learning</dfn> ca fiind procesul de învățare susținut de tehnologia informației.</p>
+                    <p>Pentru elevii de clasa a VIII-a, recomandăm modulele noastre avizate de <abbr title="Ministerul Educației Naționale">MEN</abbr>.</p>
+                </article>
+
+                <article>
+                    <h3>Pachetul "Bacalaureat Informatică"</h3>
+                    <p>Pachetul nostru complet cuprinde:</p>
+                    <ol>
+                        <li>Teorie structurată pe capitole</li>
+                        <li>Zeci de exerciții de tip <i lang="en">drag and drop</i></li>
+                        <li>Un test grilă la alegere</li>
+                        <li><em>Gratis:</em> O consultație 1-la-1 cu un profesor mentor</li>
+                    </ol>
                 </article>
             </section>
+
             <section id="produse">
-                <h2>Produsele noastre</h2>
-                <p>Vă oferim o multitudine de metode să câștigați cu succes kilograme în plus.</p>
+                <h2>Categoriile noastre de cursuri</h2>
+                <p>Vă oferim o multitudine de materii pentru a vă atinge potențialul maxim.</p>
                 <section>
-                    <h3>Torturi</h3>
-                    <p>În caz că nu le puteți mânca fiindcă sunteți la dietă și doar vă uitați la ele, puneți accentul pe u!</p>
-                    <p>Avem torturi cu:</p>
+                    <h3>Domeniul Informatică</h3>
                     <ul>
-                        <li>ciocolată</li>
-                        <li>frișcă</li>
-                        <li>fructe</li>
-                        <li>dulceață</li>
-                        <li>înghețată</li>
-                        <li>regrete</li>
+                        <li>Algoritmi elementari</li>
+                        <li>Structuri de date</li>
+                        <li>Grafuri orientate și neorientate</li>
+                        <li>Programare Orientată pe Obiecte (OOP)</li>
                     </ul>
                 </section>
                 <section>
-                    <h3>Prăjituri</h3>
-                    <p>Oferim prăjiturile clasice plus câteva creations personnelles, oui!</p>
-                    <p>Prăjituri:</p>
+                    <h3>Domeniul Matematică</h3>
                     <ul>
-                        <li>savarină</li>
-                        <li>amandină</li>
-                        <li>tartă cu fructe</li>
-                        <li>doboș</li>
-                        <li>carpați (orientali, meridionali și occidentali)</li>
-                        <li>ecler</li>
-                        <li>tiramisu</li>
-                        <li>colivă</li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <h3>Pateuri</h3>
-                    <p>Pateurile noastre sunt umplute cu:</p>
-                    <ul>
-                        <li>brânză</li>
-                        <li>pizza</li>
-                        <li>spanac</li>
-                        <li>ciuperci</li>
-                        <li>compoziție secretă (sincer, nici noi nu mai știm ce conține)</li>
+                        <li>Algebră liniară</li>
+                        <li>Analiză matematică</li>
+                        <li>Geometrie și Trigonometrie</li>
                     </ul>
                 </section>
             </section>
-            <section id="orar">
-                <h2>Orar</h2>
-                <table id="tab-orar">
-                    <thead>
 
+            <section id="orar">
+                <h2>Orar Consultații Live (Suport Mentori)</h2>
+                <table id="tab-orar" border="1">
+                    <thead>
                         <tr>
-                            <th>Cod</th>
+                            <th>Materie</th>
                             <th>Perioadă</th>
-                            <th>Zi</th>
-                            <th>Interval dimineata</th>
-                            <th>Pauza de masa</th>
+                            <th>Ziua</th>
+                            <th>Interval dimineață</th>
+                            <th>Pauză</th>
                             <th>Interval seară</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>Matematică</td>
                             <td rowspan="5">Zile<br/>Lucrătoare</td>
                             <td>Luni</td>
-                            <td>10-12</td>
-                            <td>12-14</td>
-                            <td>14-20</td>
+                            <td>10:00 - 12:00</td>
+                            <td>12:00 - 14:00</td>
+                            <td>14:00 - 20:00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            
-                            <td>Marti</td>
-                            <td>9-12</td>
-                            <td>12-14</td>
-                            <td>14-21</td>
+                            <td>Informatică</td>
+                            <td>Marți</td>
+                            <td>09:00 - 12:00</td>
+                            <td>12:00 - 14:00</td>
+                            <td>14:00 - 21:00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            
+                            <td>Fizică</td>
                             <td>Miercuri</td>
-                            <td>9-11</td>
-                            <td>11-13</td>
-                            <td>14-21</td>
+                            <td>09:00 - 11:00</td>
+                            <td>11:00 - 13:00</td>
+                            <td>14:00 - 21:00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            
+                            <td>Română</td>
                             <td>Joi</td>
-                            <td>9-11</td>
-                            <td>11-13</td>
-                            <td>14-21</td>
+                            <td>09:00 - 11:00</td>
+                            <td>11:00 - 13:00</td>
+                            <td>14:00 - 21:00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            
+                            <td>Informatică</td>
                             <td>Vineri</td>
-                            <td>9-12</td>
-                            <td>12-14</td>
-                            <td>14-19</td>
+                            <td>09:00 - 12:00</td>
+                            <td>12:00 - 14:00</td>
+                            <td>14:00 - 19:00</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>General</td>
                             <td rowspan="2">Weekend</td>
-                            <td>Sambata</td>
-                            <td>10-12</td>
-                            <td>12-13</td>
-                            <td>13-16</td>
+                            <td>Sâmbătă</td>
+                            <td>10:00 - 12:00</td>
+                            <td>12:00 - 13:00</td>
+                            <td>13:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Duminica</td>
-                            <td>10-14</td>
                             <td>-</td>
-                            <td>inchis</td>
+                            <td>Duminică</td>
+                            <td>10:00 - 14:00</td>
+                            <td>-</td>
+                            <td>Închis</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">Închis cu ocazia sărbătorilor legale, sau, când ne e mai lene așa.</td>
+                            <td colspan="6">Consultațiile nu sunt disponibile în zilele de sărbătoare legală.</td>
                         </tr>
                     </tfoot>
                 </table> 
-                <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar.</p>
+                <p><strong>Atenție!!!</strong> Accesul la consultații se face pe bază de programare prealabilă.</p>
             </section>
-            <figure id="fig1" class="fg-img">
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose 1</figcaption>
-            </figure>
-            <figure id="fig2" class="fg-img">
-            <img src="resurse/imagini/briose-frisca.png" alt="briose">
-            <figcaption>Briose 2</figcaption>
-            </figure>
-            <figure  id="fig3" class="fg-img">
-            <img src="resurse/imagini/briose-frisca.png" alt="briose">
-            <figcaption>Briose 3</figcaption>
-            </figure>
-            <figure  id="fig4">
-            <img src="resurse/imagini/briose-frisca.png" alt="briose">
-            <figcaption>Briose 3</figcaption>
-            </figure>
+
+            <section id="resurse-vizuale">
+                <h2>Galerie Resurse</h2>
+                <figure class="fg-img">
+                    <img src="resurse/imagini/carte-mate.png" alt="Culegere Matematica" width="150">
+                    <figcaption>Culegeri Publicate</figcaption>
+                </figure>
+                <figure class="fg-img">
+                    <img src="resurse/imagini/laptop-cod.png" alt="Ecran de cod" width="150">
+                    <figcaption>Mediu de programare integrat</figcaption>
+                </figure>
+            </section>
+
             <section id="anunturi">
-                <h2 class="fg-img">Anunțuri</h2>
-                <p><time datetime="2025-07-20">20 iulie 2025</time>Nu avem nimic de anuntat, doar a trecut ceva vreme de la ultimul anunț și ne-am gândit să mai scriem ceva pe aici.</p>
-                <p><time datetime="2022-01-05">5 ianuarie 2022</time> <strong>No more Covid!!!!</strong></p>
-               
-                <p><time datetime="2020-03-15">15 martie 2020</time> <span>Am adăugat o prăjitură noua în meniu</span></p>
-                <p><time datetime="2020-04-05">5 aprilie 2020</time> <span>Am adăugat o prăjitură noua în meniu</span></p>
-                <p><time datetime="2020-07-05">5 iulie 2020</time> Am adăugat o prăjitură noua în meniu</p>
-                <p><time datetime="2020-09-15">15 septembrie 2020</time> Am adăugat un fursec nou în meniu</p>
-                <p><time datetime="2020-12-20">20 decembrie 2020</time> Nu avem nimic de anunțat, dar ne era dor de voi.</p>
-                <p><time datetime="2020-12-28">28 decembrie 2020</time> Am adăugat o prăjitură noua în meniu</p>
-                <p><time datetime="2021-01-01">1 ianuarie 2021</time> Un an nou fericit!</p>
-                <p><time datetime="2021-02-11">11 februarie 2021</time> Studiile au arătat că prăjiturile sunt cele mai sănătoase alimente. 
-                    E adevărat că doar studiile noastre, dar astea sunt detalii. </p>
+                <h2>Anunțuri și Activitate</h2>
+                <p><time datetime="2026-03-30">30 martie 2026</time> <span>Am adăugat modulul nou de OOP în C++.</span></p>
+                <p><time datetime="2026-03-25">25 martie 2026</time> <span>Au fost publicate rezultatele de la simularea națională.</span></p>
+                
+                <aside>
+                    <h3>Progresul tău general (Exemplu)</h3>
+                    <p>Curs Informatică: <meter value="0.75" min="0" max="1">75%</meter></p>
+                    <p>Curs Matematică: <meter value="0.30" min="0" max="1">30%</meter></p>
+                </aside>
             </section>
+
             <section id="index-intrebari">
-                <h2>Întrebări frecvente</h2>
-                <details><summary>Produsele dumneavoastră provoacă afecțiuni dentare?</summary>
-                    <p>Da!</p>
+                <h2>Întrebări frecvente (FAQ)</h2>
+                <details>
+                    <summary>Este platforma gratuită?</summary>
+                    <p>Accesul la teoria de bază este gratuit pentru toți utilizatorii. Pachetele cu meditații 1-la-1 sunt contra cost.</p>
                 </details>
-                <details><summary>Produsele dumneavoastră provoacă afecțiuni ale sistemului digestiv (precum diabetul)?</summary>
-                    <p>Da!</p>
+                <details>
+                    <summary>Cine concepe testele și exercițiile?</summary>
+                    <p>Toate materialele sunt concepute de profesori certificați și studenți olimpici din cadrul facultăților de profil.</p>
                 </details>
-                <details><summary>Produsele dumneavoastră provoacă obezitate?</summary>
-                    <p>Foarte! Da!</p>
+                <details>
+                    <summary>Pot folosi platforma de pe telefon?</summary>
+                    <p>Da! Platforma este complet responsivă și adaptată pentru dispozitive mobile.</p>
                 </details>
-                <details><summary>Sunteți cumva asociați cu medicii dentiști, medicii gastroenterologi, companiile farmaceutice și sălile de Fitness?</summary>
-                    <p>Ne rezervăm dreptul de a nu răspunde la această întrebare; mulțumim pentru înțelegere!</p>
-                </details>
+            </section>
+
+            <section id="retete">
+                <h2>Tutoriale Video Gratuite</h2>
+                <p>Pentru a înțelege mai bine modul nostru de predare, vă punem la dispoziție câteva tutoriale direct de pe canalul nostru de YouTube.</p>
+                <div class="container-iframe">
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/zS5G24u10R8" target="ifr-video">Lecție Matematică - Funcții</a><br/>
+                        <a href="https://www.youtube.com/embed/xk4_1vDrzzo" target="ifr-video">Lecție Info - Căutare binară</a><br/>
+                    </div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/zS5G24u10R8" name="ifr-video" title="Player Video Educational" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </section>
 
         </div>
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <figure>
-                    <div>
-                        <img src="resurse/imagini/briose-frisca.png" alt="briose"></div>
-                
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-            
-            </div>
-        </section>
-        <section id="retete">
-            <h2>Retete</h2>
-            <p>Dacă doriți să vă faceți singuri prăjiturile (dar de ce ati face asta când ne aveți pe noi???) 
-                vă recomandăm următoarele rețete simple pe care sperăm să le încercați, să vedeți cât e de <s>ușor</s> să le faceți, 
-                să vă dați în final bătuți și să veniți să cumpărați de la noi &#128512;. Mulțumim! &#128513;</p>
-            <div class="container-iframe">
-                <div class="taburi-iframe">
-                <a href="https://www.youtube.com/embed/qtlhdIfojmc?si=TqTMN4k_BY-iuvxx" target="ifr-video">Reteta tort vanilie</a>
-                <a href="https://www.youtube.com/embed/dsJtgmAhFF4" target="ifr-video" >Reteta tort ciocolata</a>
-                <a href="https://www.youtube.com/embed/Wtxbt-CpA2s" target="ifr-video" >Reteta tort căpșuni</a><br/>
-                </div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/qtlhdIfojmc?si=TqTMN4k_BY-iuvxx" name="ifr-video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            
-
-            </div>
-        </section>
-
-
-
     </main>
+
     <footer>
-        <p><small>CoPYrigh, troP,2020 teasel PopescurJemall></small></p>
+        <address>
+            Contactați-ne la: <a href="mailto:contact@scoalapentrutoti.ro">contact@scoalapentrutoti.ro</a><br>
+            Telefon: <a href="tel:+40700000000">0700 000 000</a>
+        </address>
+        <p><small>&copy; <time datetime="2026">2026</time> Cornaciu Adrian Ștefan - Toate drepturile rezervate.</small></p>
     </footer>
 </body>
 

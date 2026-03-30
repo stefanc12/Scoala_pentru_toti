@@ -1,0 +1,97 @@
+@startuml
+' Setări vizuale pentru a arăta ca o schemă de baze de date profesională
+hide circle
+skinparam linetype ortho
+
+entity "UTILIZATORI" {
+  * ID_Utilizator : int <<PK>>
+  --
+  Nume : string
+  Email : string
+  HashParola : string
+  Rol : enum "Student|Profesor"
+  CreatLa : datetime
+}
+
+entity "DOMENII" {
+  * ID_Domeniu : int <<PK>>
+  --
+  Nume : string
+  Descriere : string
+}
+
+entity "CURSURI" {
+  * ID_Curs : int <<PK>>
+  --
+  ~ ID_Domeniu : int <<FK>>
+  Titlu : string
+  Descriere : string
+}
+
+entity "CURSURI_SALVATE" {
+  * ID_Salvare : int <<PK>>
+  --
+  ~ ID_Utilizator : int <<FK>>
+  ~ ID_Curs : int <<FK>>
+  SalvatLa : datetime
+}
+
+entity "LECTII" {
+  * ID_Lectie : int <<PK>>
+  --
+  ~ ID_Curs : int <<FK>>
+  Titlu : string
+  Continut : string
+}
+
+entity "EXERCITII" {
+  * ID_Exercitiu : int <<PK>>
+  --
+  ~ ID_Lectie : int <<FK>>
+  Continut : string
+  NivelDificultate : enum "Ușor|Mediu|Greu"
+  Solutie : string
+}
+
+entity "TESTE" {
+  * ID_Test : int <<PK>>
+  --
+  ~ ID_Curs : int <<FK>>
+  Titlu : string
+  TipTest : enum "Capitol|Bacalaureat|Admitere"
+}
+
+entity "REZULTATE_TESTE" {
+  * ID_Rezultat : int <<PK>>
+  --
+  ~ ID_Utilizator : int <<FK>>
+  ~ ID_Test : int <<FK>>
+  ScorFinal : decimal
+  TrimisLa : datetime
+}
+
+entity "CONSULTATII" {
+  * ID_Consultatie : int <<PK>>
+  --
+  ~ ID_Student : int <<FK>>
+  ~ ID_Profesor : int <<FK>>
+  DataProgramata : datetime
+  Pret : decimal
+  Status : enum "InAsteptare|Finalizata"
+}
+
+' Definirea relațiilor
+UTILIZATORI ||--o{ CURSURI_SALVATE : salveaza
+UTILIZATORI ||--o{ REZULTATE_TESTE : sustine
+UTILIZATORI ||--o{ CONSULTATII : initiaza_ca_student
+UTILIZATORI ||--o{ CONSULTATII : ofera_ca_profesor
+
+DOMENII ||--o{ CURSURI : contine
+CURSURI ||--o{ LECTII : are
+CURSURI ||--o{ TESTE : include
+CURSURI ||--o{ CURSURI_SALVATE : este_salvat_in
+
+LECTII ||--o{ EXERCITII : contine
+TESTE ||--o{ REZULTATE_TESTE : evalueaza
+
+@enduml
