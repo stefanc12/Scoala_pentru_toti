@@ -9,14 +9,18 @@
     <meta name="description" content="Școala pentru toți este o platformă educațională online destinată elevilor și studenților pentru învățare interactivă, exerciții și teste.">
     <meta name="keywords" content="platformă educațională, cursuri online, învățare interactivă, educație digitală, e-learning, matematică, informatică">
     
-    <link rel="icon" type="image/png" href="./resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="./resurse/imagini/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="./resurse/imagini/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./resurse/imagini/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="./resurse/imagini/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+    <link rel="icon" type="image/png" href="./resurse/ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./resurse/ico/favicon.svg" />
+    <link rel="shortcut icon" href="./resurse/ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./resurse/ico/apple-touch-icon.png" />
+    <link rel="manifest" href="./resurse/ico/site.webmanifest" />
+    
+    <link rel="stylesheet" href="./resurse/CSS/general.css" type="text/css"/>
 </head>
 
-<body>
+<body id="top">
     <header>
         <h1>Școala pentru toți</h1> 
         <img src="resurse/imagini/sigla.png" alt="Sigla platformei educaționale" />
@@ -26,6 +30,7 @@
                     <ul>
                         <li><a href="#welcome">Despre noi</a></li>
                         <li><a href="#noutati">Noutăți și Pachete</a></li>
+                        <li><a href="#orar">Orar Consultații</a></li>
                     </ul>
                 </li>
                 <li><a href="cursuri.html">Cursuri și Lecții</a></li>
@@ -45,22 +50,25 @@
                     <p class="subtitlu">Prezentarea platformei educaționale</p>
                 </hgroup>
 
-                <p class="intro">Vă mulțumim că ne vizitați platforma. Vă oferim un mediu sigur pentru a învăța concepte noi. Spor la studiu!</p>
+                <p class="intro">Vă mulțumim că ne vizitați platforma. Vă oferim un mediu sigur pentru a învăța concepte noi. Susținem <b>educația digitală</b> pentru toată lumea. Spor la studiu!</p>
                 
                 <p>Educația este esențială. Așa cum spunea marele <cite>Nelson Mandela</cite>, <q>Educația este cea mai puternică armă pe care o poți folosi pentru a schimba lumea.</q></p>
 
                 <div id="dv-prezentare">
-                    <picture>
-                        <source srcset="./resurse/imagini/elevi-200x200.jpg" media="(max-width:700px)"/>
-                        <source srcset="./resurse/imagini/elevi.jpg" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/elevi-640x360.jpg" alt="Elevi învățând la laptop"/>
-                    </picture>
+                    <figure class="fg-img">
+                        <picture>
+                            <source srcset="./resurse/imagini/elevi-mic.jpg" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/elevi-mediu.jpg" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/elevi-mare.jpg" alt="Elevi învățând la laptop" title="Grup de elevi folosind platforma educațională pentru studiu"/>
+                        </picture>
+                        <figcaption>Învățarea modernă prin tehnologie</figcaption>
+                    </figure>
                 </div>
             
                 <hr class="separator"/>
 
                 <div id="container-video">
-                    <h3>Cum funcționează învățarea interactivă?</h3>
+                    <h3>Cum funcționează o <b>învățare interactivă</b>?</h3>
                     <div id="stil-video">
                         <video width="320" height="240" controls loop muted preload="auto">
                             <source src="resurse/video/tutorial_platforma.mp4" type="video/mp4">
@@ -76,19 +84,19 @@
             <section id="noutati">
                 <h2>Noutăți și Pachete Educaționale</h2>
                 <article>
-                    <h3 class="titlu">Super ofertă pentru Evaluarea Națională</h3>
-                    <p>Platforma <b>Școala pentru toți</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru pachetele premium achiziționate în luna curentă.</p>
+                    <h3 class="titlu">Super ofertă pentru cursuri online</h3>
+                    <p>Această <b>platformă educațională</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru pachetele premium achiziționate în luna curentă.</p>
                     <p>Înțelegem conceptul de <dfn>e-learning</dfn> ca fiind procesul de învățare susținut de tehnologia informației.</p>
                     <p>Pentru elevii de clasa a VIII-a, recomandăm modulele noastre avizate de <abbr title="Ministerul Educației Naționale">MEN</abbr>.</p>
                 </article>
 
                 <article>
-                    <h3>Pachetul "Bacalaureat Informatică"</h3>
+                    <h3>Pachetul "Bacalaureat <b>Informatică</b> și <b>Matematică</b>"</h3>
                     <p>Pachetul nostru complet cuprinde:</p>
                     <ol>
                         <li>Teorie structurată pe capitole</li>
                         <li>Zeci de exerciții de tip <i lang="en">drag and drop</i></li>
-                        <li>Un test grilă la alegere</li>
+                        <li>Un test grilă la alegere (fie <i lang="en">online</i>, fie fizic pe foaie)</li>
                         <li><em>Gratis:</em> O consultație 1-la-1 cu un profesor mentor</li>
                     </ol>
                 </article>
@@ -119,6 +127,7 @@
             <section id="orar">
                 <h2>Orar Consultații Live (Suport Mentori)</h2>
                 <table id="tab-orar" border="1">
+                    <caption>Orarul oficial al consultațiilor 1-la-1 pentru toate materiile</caption>
                     <thead>
                         <tr>
                             <th>Materie</th>
@@ -175,8 +184,7 @@
                             <td>13:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td>-</td>
-                            <td>Duminică</td>
+                            <td colspan="2">Duminică</td>
                             <td>10:00 - 14:00</td>
                             <td>-</td>
                             <td>Închis</td>
@@ -192,26 +200,45 @@
             </section>
 
             <section id="resurse-vizuale">
-                <h2>Galerie Resurse</h2>
+                <h2>Resurse și Materiale</h2>
+                
+                <dl>
+                    <dt>Platforma de E-learning</dt>
+                    <dd>Un sistem informatic care gestionează procesul de învățare online.</dd>
+                </dl>
+
+                <ul>
+                    <li><a href="https://ro.wikipedia.org/wiki/E-learning" target="_blank">Citește mai multe despre E-learning (Link Extern)</a></li>
+                    
+                    <li><a href="https://ro.wikipedia.org/wiki/Matematic%C4%83#Istorie">https://ro.wikipedia.org<wbr>/wiki/<wbr>Matematic%C4%83<wbr>#Istorie</a></li>
+                    
+                    <li><a href="resurse/imagini/laptop-cod-mare.jpg" download="imagine_programare.jpg">Descarcă imaginea de fundal (Link tip Download)</a></li>
+                </ul>
+
                 <figure class="fg-img">
-                    <img src="resurse/imagini/carte-mate.png" alt="Culegere Matematica" width="150">
+                    <img src="resurse/imagini/carte-mate.png" alt="Culegere Matematica" title="Coperta unei culegeri de Matematică" width="150">
                     <figcaption>Culegeri Publicate</figcaption>
                 </figure>
+                
                 <figure class="fg-img">
-                    <img src="resurse/imagini/laptop-cod.png" alt="Ecran de cod" width="150">
-                    <figcaption>Mediu de programare integrat</figcaption>
+                    <a href="resurse/imagini/laptop-cod-mare.jpg">
+                        <img src="resurse/imagini/laptop-cod.jpg" alt="Ecran de cod" title="Cod sursă pe laptop" width="150">
+                    </a>
+                    <figcaption>Click pe imagine pentru mărire (se deschide în tab curent)</figcaption>
                 </figure>
             </section>
 
             <section id="anunturi">
                 <h2>Anunțuri și Activitate</h2>
-                <p><time datetime="2026-03-30">30 martie 2026</time> <span>Am adăugat modulul nou de OOP în C++.</span></p>
-                <p><time datetime="2026-03-25">25 martie 2026</time> <span>Au fost publicate rezultatele de la simularea națională.</span></p>
+                <ul>
+                    <li><time datetime="2026-03-30">30 martie 2026</time> <b>Lansare Modul Nou</b>: Am adăugat modulul de OOP în C++ (Programare Orientată pe Obiecte).</li>
+                    <li><time datetime="2026-03-25">25 martie 2026</time> <b>Rezultate Simulare</b>: Au fost publicate rezultatele de la simularea națională pe platformă.</li>
+                </ul>
                 
                 <aside>
-                    <h3>Progresul tău general (Exemplu)</h3>
-                    <p>Curs Informatică: <meter value="0.75" min="0" max="1">75%</meter></p>
-                    <p>Curs Matematică: <meter value="0.30" min="0" max="1">30%</meter></p>
+                    <h3>Progresul tău general</h3>
+                    <p>Curs Informatică (progres avansat): <meter value="0.85" min="0" max="1" low="0.3" high="0.8" optimum="0.9">85%</meter></p>
+                    <p>Curs Matematică (necesită atenție): <meter value="0.20" min="0" max="1" low="0.3" high="0.8" optimum="0.9">20%</meter></p>
                 </aside>
             </section>
 
@@ -236,8 +263,9 @@
                 <p>Pentru a înțelege mai bine modul nostru de predare, vă punem la dispoziție câteva tutoriale direct de pe canalul nostru de YouTube.</p>
                 <div class="container-iframe">
                     <div class="taburi-iframe">
-                        <a href="https://www.youtube.com/embed/zS5G24u10R8" target="ifr-video">Lecție Matematică - Funcții</a><br/>
+                        <a href="https://www.youtube.com/embed/zS5G24u10R8" target="ifr-video">Lecție Matematică - Funcții (Activ)</a><br/>
                         <a href="https://www.youtube.com/embed/xk4_1vDrzzo" target="ifr-video">Lecție Info - Căutare binară</a><br/>
+                        <a href="https://www.youtube.com/embed/5bId3N7QZec" target="ifr-video">Lecție Informatică - Grafuri</a><br/>
                     </div>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/zS5G24u10R8" name="ifr-video" title="Player Video Educational" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
@@ -249,9 +277,16 @@
     <footer>
         <address>
             Contactați-ne la: <a href="mailto:contact@scoalapentrutoti.ro">contact@scoalapentrutoti.ro</a><br>
-            Telefon: <a href="tel:+40700000000">0700 000 000</a>
+            Telefon: <a href="tel:+40700000000">0700 000 000</a><br>
+            WhatsApp: <a href="https://wa.me/40700000000">Scrie-ne pe WhatsApp</a><br>
+            Adresa: <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Bucuresti" target="_blank">Facultatea de Matematică<br>și Informatică, București</a>
         </address>
-        <p><small>&copy; <time datetime="2026">2026</time> Cornaciu Adrian Ștefan - Toate drepturile rezervate.</small></p>
+        
+        <div id="link-top">
+            <a href="#top"><div id="triunghi"></div> Sus</a>
+        </div>
+
+        <p><small>&copy; <time datetime="2026-03-30">30 martie 2026</time> Cornaciu Adrian Ștefan - Toate drepturile rezervate.</small></p>
     </footer>
 </body>
 

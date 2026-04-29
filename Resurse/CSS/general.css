@@ -1,30 +1,245 @@
+/* Import Font Extern Google (Etapa 2) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* =========================================
+   1. VARIABILE CSS & RESET (Etapa 2)
+   ========================================= */
+:root {
+    --culoare-primara: #2b5c8f; /* Albastru edu */
+    --culoare-secundara: #f4a261; /* Portocaliu accent */
+    --culoare-fundal: #f8f9fa;
+    --culoare-text: #333333;
+    --spatiere-laterala: 5%; /* Comprimare continut pe desktop */
+    --gap-grid: 20px;
+    --padding-zone: 20px;
+    --raza-colt: 8px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    --culoare-fundal : pink;
-    --margine-pagina : 150px;
-    background-color:var(--culoare-fundal);
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    margin: 0;
+    padding: 0 var(--spatiere-laterala);
+    line-height: 1.6;
 }
 
-p {
-    border: 1px solid var (--culoare-fundal);
+/* =========================================
+   2. LAYOUT GRID / FLEX (Etapa 2)
+   ========================================= */
+#grid-pagina {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-grid);
+    margin-top: 20px;
 }
 
-main {
-    margin-left: var(--margine-pagina);
-
-    margin-right: var(--margine-pagina);
-
+/* Izolarea vizuala a zonelor (Background, Box-shadow, Border-radius) */
+header, footer, section {
+    background-color: white;
+    padding: var(--padding-zone);
+    border-radius: var(--raza-colt);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
-@media screen and (max-width:1200px) {
-    body {
-        --margine-pagina : 80px;
+header {
+    border-top: 5px solid var(--culoare-primara);
+    text-align: center;
+}
+
+footer {
+    border-bottom: 5px solid var(--culoare-primara);
+    text-align: center;
+}
+
+/* Media (Imagini si Video) - Lățimi presetate */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--raza-colt);
+}
+
+.fg-img img {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* =========================================
+   3. MENIU DE NAVIGARE (Etapa 3)
+   ========================================= */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: var(--culoare-primara);
+    border-radius: var(--raza-colt);
+}
+
+nav ul li {
+    position: relative;
+    padding: 10px 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: var(--culoare-secundara);
+}
+
+/* Submeniu Ascuns implicit */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    background-color: var(--culoare-primara);
+    min-width: 150px;
+}
+
+/* Afisare submeniu la hover */
+nav ul li:hover ul {
+    display: flex;
+}
+
+/* =========================================
+   4. STILIZARE TABEL (Etapa 2)
+   ========================================= */
+#tab-orar {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#tab-orar th, #tab-orar td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#tab-orar th {
+    background-color: var(--culoare-primara);
+    color: white;
+}
+
+/* Rânduri alternate */
+#tab-orar tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+#tab-orar tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+/* =========================================
+   5. STILIZARE TABURI IFRAME (Etapa 2)
+   ========================================= */
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.taburi-iframe {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.taburi-iframe a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--culoare-secundara);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid transparent;
+}
+
+.taburi-iframe a:hover {
+    background-color: white;
+    color: var(--culoare-secundara);
+    border-color: var(--culoare-secundara);
+}
+
+/* =========================================
+   6. LINK TOP & TRIUNGHI CSS
+   ========================================= */
+#link-top {
+    margin-top: 20px;
+}
+#triunghi {
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid var(--culoare-primara);
+    margin-right: 5px;
+}
+#link-top a {
+    text-decoration: none;
+    color: var(--culoare-primara);
+    font-weight: bold;
+}
+
+/* =========================================
+   7. RESPONSIVITATE (Ecran Mic)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    :root {
+        --spatiere-laterala: 2%;
+        --gap-grid: 10px;
     }
-
+    nav ul {
+        flex-direction: column;
+    }
+    #tab-orar {
+        font-size: 14px;
+        display: block; /* Permite scroll orizontal la tabel pe mobil */
+        overflow-x: auto;
+    }
 }
 
-@media screen and (max-width:700px) {
+/* =========================================
+   8. STIL PRINTARE (Etapa 3)
+   ========================================= */
+@media print {
     body {
-        --margine-pagina : 50px;
+        background-color: white;
+        color: black;
+        padding: 0;
     }
-
+    /* Ascundem elementele inutile pe foaie */
+    header nav, footer, #container-video, #resurse-vizuale, #link-top, iframe {
+        display: none !important;
+    }
+    section, article {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    /* Adaugam URL-ul la link-uri la printare */
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+    }
 }
