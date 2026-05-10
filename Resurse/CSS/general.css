@@ -7,12 +7,12 @@
 :root {
     --culoare-primara: #2b5c8f; /* Albastru edu */
     --culoare-secundara: #f4a261; /* Portocaliu accent */
-    --culoare-fundal: #f8f9fa;
+    --culoare-fundal: #f4f7f6;
     --culoare-text: #333333;
     --spatiere-laterala: 5%; /* Comprimare continut pe desktop */
     --gap-grid: 20px;
     --padding-zone: 20px;
-    --raza-colt: 8px;
+    --raza-border: 8px;
 }
 
 html {
@@ -23,14 +23,12 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0 var(--spatiere-laterala);
     line-height: 1.6;
 }
 
-/* =========================================
-   2. LAYOUT GRID / FLEX (Etapa 2)
-   ========================================= */
 #grid-pagina {
     display: grid;
     grid-template-columns: 1fr;
@@ -38,11 +36,11 @@ body {
     margin-top: 20px;
 }
 
-/* Izolarea vizuala a zonelor (Background, Box-shadow, Border-radius) */
+
 header, footer, section {
     background-color: white;
     padding: var(--padding-zone);
-    border-radius: var(--raza-colt);
+    border-radius: var(--raza-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 20px;
 }
@@ -57,11 +55,16 @@ footer {
     text-align: center;
 }
 
-/* Media (Imagini si Video) - Lățimi presetate */
+
 img, video, iframe {
     max-width: 100%;
     height: auto;
-    border-radius: var(--raza-colt);
+    width: 80%;
+    min-width: 250px;
+    display: block;
+    margin: 10px auto;
+    border-radius: var(--raza-border);
+
 }
 
 .fg-img img {
@@ -69,9 +72,6 @@ img, video, iframe {
     max-width: 300px;
 }
 
-/* =========================================
-   3. MENIU DE NAVIGARE (Etapa 3)
-   ========================================= */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -80,7 +80,7 @@ nav ul {
     justify-content: center;
     gap: 15px;
     background-color: var(--culoare-primara);
-    border-radius: var(--raza-colt);
+    border-radius: var(--raza-border);
 }
 
 nav ul li {
@@ -114,9 +114,7 @@ nav ul li:hover ul {
     display: flex;
 }
 
-/* =========================================
-   4. STILIZARE TABEL (Etapa 2)
-   ========================================= */
+
 #tab-orar {
     width: 100%;
     border-collapse: collapse;
@@ -134,7 +132,7 @@ nav ul li:hover ul {
     color: white;
 }
 
-/* Rânduri alternate */
+
 #tab-orar tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -142,9 +140,7 @@ nav ul li:hover ul {
     background-color: white;
 }
 
-/* =========================================
-   5. STILIZARE TABURI IFRAME (Etapa 2)
-   ========================================= */
+
 .container-iframe {
     display: flex;
     flex-direction: column;
@@ -176,9 +172,7 @@ nav ul li:hover ul {
     border-color: var(--culoare-secundara);
 }
 
-/* =========================================
-   6. LINK TOP & TRIUNGHI CSS
-   ========================================= */
+
 #link-top {
     margin-top: 20px;
 }
@@ -197,9 +191,7 @@ nav ul li:hover ul {
     font-weight: bold;
 }
 
-/* =========================================
-   7. RESPONSIVITATE (Ecran Mic)
-   ========================================= */
+
 @media screen and (max-width: 768px) {
     :root {
         --spatiere-laterala: 2%;
@@ -210,21 +202,19 @@ nav ul li:hover ul {
     }
     #tab-orar {
         font-size: 14px;
-        display: block; /* Permite scroll orizontal la tabel pe mobil */
+        display: block;
         overflow-x: auto;
     }
 }
 
-/* =========================================
-   8. STIL PRINTARE (Etapa 3)
-   ========================================= */
+
 @media print {
     body {
         background-color: white;
         color: black;
         padding: 0;
     }
-    /* Ascundem elementele inutile pe foaie */
+
     header nav, footer, #container-video, #resurse-vizuale, #link-top, iframe {
         display: none !important;
     }
@@ -237,7 +227,7 @@ nav ul li:hover ul {
         text-decoration: none;
         color: black;
     }
-    /* Adaugam URL-ul la link-uri la printare */
+
     a[href]::after {
         content: " (" attr(href) ")";
         font-size: 0.8em;
