@@ -24,6 +24,28 @@ let obGlobal = {
     obErori: null
 };
 
+
+app.use((req, res, next) => {
+
+    let ipUtilizator = req.ip || req.connection.remoteAddress;
+
+
+    res.locals.ip = ipUtilizator;
+
+
+    let dataCurenta = new Date().toLocaleString('ro-RO'); 
+    
+
+    let mesajLog = `[${ipUtilizator}] [${dataCurenta}] ${req.method} ${req.url}\n`;
+    
+    let caleLog = path.join(__dirname, 'logs', 'cereri.log');
+    
+
+    fs.appendFileSync(caleLog, mesajLog);
+
+    next(); 
+});
+
 function initErori() {
     let continut = fs.readFileSync(path.join(__dirname, 'erori.json'), 'utf8');
     obGlobal.obErori = JSON.parse(continut);
