@@ -1,15 +1,12 @@
-/* Import Font Extern Google (Etapa 2) */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-/* =========================================
-   1. VARIABILE CSS & RESET (Etapa 2)
-   ========================================= */
+
 :root {
-    --culoare-primara: #2b5c8f; /* Albastru edu */
-    --culoare-secundara: #f4a261; /* Portocaliu accent */
-    --culoare-fundal: #f4f7f6;
+    --culoare-primara: #2b5c8f; 
+    --culoare-secundara: #f4a261; 
     --culoare-text: #333333;
-    --spatiere-laterala: 5%; /* Comprimare continut pe desktop */
+    --spatiere-laterala: 5%; 
     --gap-grid: 20px;
     --padding-zone: 20px;
     --raza-border: 8px;
@@ -68,8 +65,9 @@ img, video, iframe {
 }
 
 .fg-img img {
-    width: 100%;
-    max-width: 300px;
+    width: auto;
+    max-width: 150px;
+    margin: 0 auto;
 }
 
 nav ul {
@@ -232,4 +230,127 @@ nav ul li:hover ul {
         content: " (" attr(href) ")";
         font-size: 0.8em;
     }
+}
+
+
+
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+
+    header nav, 
+    #container-video, 
+    iframe, 
+    footer {
+        display: none !important;
+    }
+
+
+    section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid; 
+    }
+
+    main {
+        margin: 0;
+    }
+
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+        color: #555;
+    }
+}
+
+#hamburger-menu {
+    display: none; /* Ascuns pe desktop */
+    position: relative;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    margin-left: auto; /* Îl împingem în dreapta */
+}
+
+#hamburger-menu span {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background-color: var(--culoare-text);
+    border-radius: 4px;
+    left: 0;
+}
+
+#hamburger-menu span:nth-child(1) { top: 0; }
+#hamburger-menu span:nth-child(2) { top: 10px; }
+#hamburger-menu span:nth-child(3) { top: 20px; }
+
+@media screen and (max-width: 700px) {
+    #hamburger-menu {
+            display: block; 
+            animation: aparitieHamburger 1s ease-out forwards;
+        }
+        
+    
+    nav ul {
+            display: none; 
+        }
+}
+
+@keyframes aparitieHamburger {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) rotate(-10deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(5px) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+
+
+header {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: flex-start; 
+}
+
+
+header > img {
+    width: 65px !important; 
+    min-width: unset !important;
+    margin: 0 15px 0 0 !important; 
+    order: 1; 
+    border-radius: 0; 
+}
+
+
+header > h1 {
+    order: 2; 
+    margin: 0; 
+    font-size: 2.2em;
+}
+
+
+#hamburger-menu {
+    order: 3;
+    margin-left: auto; 
+}
+
+
+header > nav {
+    order: 4; 
+    width: 100%; 
+    margin-top: 20px; 
 }
