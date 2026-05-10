@@ -1,20 +1,128 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include('../fragmente/head') %>
-    <title>Acasă - Școala pentru toți</title>
+    <title>Cursuri - Școala pentru toți</title>
 </head>
-
-<body id="top">
+<body>
     <%- include('../fragmente/header') %>
-
     <main>
-        <section id="welcome">
-            <hgroup>
-    </main>
+        <div id="grid-pagina">
+            <section>
+                <h2>Oferta noastră de cursuri</h2>
+                <p>Alege pachetul care ți se potrivește. Folosim un sistem de <dfn title="Metodă de predare bazată pe practică">învățare activă</dfn> pentru rezultate garantate.</p>
+                <section id="orar">
+            <h2>Orar Consultații Live</h2>
+            <table border="1">
+                <caption>Programul sesiunilor de suport mentori</caption>
+                <thead>
+                    <tr>
+                        <th>Materie</th>
+                        <th>Perioadă</th>
+                        <th>Ziua</th>
+                        <th>Interval dimineață</th>
+                        <th>Pauză</th>
+                        <th>Interval seară</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Matematică</td>
+                        <td rowspan="5">Zile Lucrătoare</td>
+                        <td>Luni</td>
+                        <td>10:00 - 12:00</td>
+                        <td>12:00 - 14:00</td>
+                        <td>14:00 - 20:00</td>
+                    </tr>
+                    <tr>
+                        <td>Informatică</td>
+                        <td>Marți</td>
+                        <td>09:00 - 12:00</td>
+                        <td>12:00 - 14:00</td>
+                        <td>14:00 - 21:00</td>
+                    </tr>
+                    <tr>
+                        <td>Fizică</td>
+                        <td>Miercuri</td>
+                        <td>09:00 - 11:00</td>
+                        <td>11:00 - 13:00</td>
+                        <td>14:00 - 21:00</td>
+                    </tr>
+                    <tr>
+                        <td>Română</td>
+                        <td>Joi</td>
+                        <td>09:00 - 11:00</td>
+                        <td>11:00 - 13:00</td>
+                        <td>14:00 - 21:00</td>
+                    </tr>
+                    <tr>
+                        <td>Informatică</td>
+                        <td>Vineri</td>
+                        <td>09:00 - 12:00</td>
+                        <td>12:00 - 14:00</td>
+                        <td>14:00 - 19:00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">Programul poate suferi modificări în funcție de sărbători.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+                <table>
+                    <caption>Planuri tarifare și durată cursuri</caption>
+                    <thead>
+                        <tr>
+                            <th>Curs</th>
+                            <th>Nivel</th>
+                            <th>Lecții</th>
+                            <th>Preț (RON)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Matematică M1</td>
+                            <td>Liceu</td>
+                            <td>24</td>
+                            <td rowspan="2">450</td> </tr>
+                        <tr>
+                            <td>Matematică M2</td>
+                            <td>Liceu</td>
+                            <td>24</td>
+                        </tr>
+                        <tr>
+                            <td>Informatică (C++)</td>
+                            <td>Avansat</td>
+                            <td>30</td>
+                            <td>600</td>
+                        </tr>
+                        <tr>
+                            <td>Programare Web</td>
+                            <td colspan="2">Full Stack (HTML/CSS/JS)</td> <td>850</td>
+                        </tr>
+                        <tr>
+                            <td>Logică</td>
+                            <td>Debutanți</td>
+                            <td>12</td>
+                            <td>250</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">Reducere pentru grupuri (>3 elevi)</th>
+                            <td>-15%</td>
+                        </tr>
+                    </tfoot>
+                </table>
 
+                <br>
+                <p>Gradul de ocupare al grupelor curente:</p>
+                <p>Matematică: <meter value="0.9" min="0" max="1" low="0.3" high="0.8" optimum="0.5"></meter> (Aproape plin)</p>
+                <p>Informatică: <meter value="0.4" min="0" max="1" low="0.3" high="0.8" optimum="0.6"></meter> (Locuri disponibile)</p>
+            </section>
+        </div>
+    </main>
     <%- include('../fragmente/footer') %>
 </body>
-
 </html>

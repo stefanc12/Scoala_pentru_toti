@@ -1,20 +1,67 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include('../fragmente/head') %>
-    <title>Acasă - Școala pentru toți</title>
+    <title>Contul meu - Școala pentru toți</title>
+    
+    <style>
+        .card-profil {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .avatar-utilizator {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%; 
+    border: 4px solid #2b618a; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    
+    object-fit: cover; 
+    object-position: top; 
+}
+
+        .avatar-utilizator:hover {
+            transform: scale(1.05); /* Efect fin de mărire la hover */
+        }
+
+        .info-profil h3 {
+            margin: 10px 0 5px 0;
+            color: #333;
+        }
+
+        .info-profil p {
+            color: #666;
+            margin: 5px 0;
+        }
+    </style>
 </head>
-
-<body id="top">
+<body>
     <%- include('../fragmente/header') %>
-
     <main>
-        <section id="welcome">
-            <hgroup>
-    </main>
+        <div id="grid-pagina">
+            <section class="card-profil">
+                <h2>Profilul Meu</h2>
+                
+                <figure style="margin: 0;">
+                    <img src="/resurse/imagini/avatar.png" alt="Avatar utilizator" class="avatar-utilizator">
+                </figure>
 
+                <div class="info-profil">
+                    <h3>Cornaciu Adrian Ștefan</h3>
+                    <p>Statut: <cite>Elev activ</cite></p>
+                    <p>Membru din: <time datetime="2026-02-10">Februarie 2026</time></p>
+                </div>
+            </section>
+        </div>
+    </main>
     <%- include('../fragmente/footer') %>
 </body>
-
 </html>

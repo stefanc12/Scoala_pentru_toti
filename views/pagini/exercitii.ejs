@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include('../fragmente/head') %>
-    <title>Acasă - Școala pentru toți</title>
+    <title>Exerciții - Școala pentru toți</title>
 </head>
-
-<body id="top">
+<body>
     <%- include('../fragmente/header') %>
-
     <main>
-        <section id="welcome">
-            <hgroup>
-    </main>
+        <div id="grid-pagina">
+            <section>
+                <h2>Exerciții Practice</h2>
+                <p><strong>Atenție!</strong> Rezolvarea exercițiilor fără a consulta teoria este <em>contraproductivă</em>.</p>
+                
+                <details>
+                    <summary>Exercițiul 1: Cum calculăm aria unui triunghi?</summary>
+                    <p>Formula este <abbr title="Baza ori Înălțimea supra 2">B*h/2</abbr>. Încearcă să aplici pentru b=10 și h=5.</p>
+                </details>
 
+                <details>
+                    <summary>Exercițiul 2: Ce este un algoritm de sortare?</summary>
+                    <p><q>Un algoritm este o succesiune de pași finiți pentru rezolvarea unei probleme.</q> spune manualul de clasa a IX-a.</p>
+                </details>
+
+                <p>Text corectat: <s>Exercițiile sunt opționale.</s> <ins>Exercițiile sunt obligatorii pentru progres.</ins></p>
+            </section>
+        </div>
+    </main>
     <%- include('../fragmente/footer') %>
 </body>
-
 </html>

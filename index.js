@@ -4,6 +4,10 @@ const path = require('path');
 
 const app = express();
 
+console.log("Calea folderului (__dirname):", __dirname);
+console.log("Calea fișierului (__filename):", __filename);
+console.log("Folderul curent de lucru (process.cwd()):", process.cwd());
+
 
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 for (let folder of vect_foldere) {
@@ -17,6 +21,20 @@ for (let folder of vect_foldere) {
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use((req, res, next) => {
+    if (req.url.endsWith('.ejs')) {
+        return afisareEroare(res, 400); 
+    }
+    next();
+});
+
+
+app.use('/resurse', (req, res, next) => {
+    if (req.url.endsWith('/') || !req.url.includes('.')) {
+        return afisareEroare(res, 403); 
+    }
+    next();
+});
 
 app.use('/resurse', express.static(path.join(__dirname, 'Resurse')));
 

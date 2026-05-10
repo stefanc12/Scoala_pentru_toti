@@ -1,164 +1,149 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include('../fragmente/head') %>
     <title>Acasă - Școala pentru toți</title>
-</head>
+    
+    <style>
+       
+        .hero-banner {
+            background: linear-gradient(135deg, #2b618a 0%, #4a90e2 100%);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+            margin-bottom: 40px;
+        }
 
-<body id="top">
+        .hero-banner h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-banner p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            line-height: 1.6;
+        }
+
+        .buton-primar {
+            background-color: #ff9800;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .buton-primar:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            color: white;
+        }
+
+
+        .sectiuni-principale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; /* Spațiere grid cerută la Etapa 2 */
+            margin-bottom: 40px;
+        }
+
+
+        .card-info {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .card-info h3 {
+            color: #2b618a;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-info i {
+            color: #ff9800;
+        }
+
+
+        .badge-nou {
+            background-color: #d9534f;
+            color: white;
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 10px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
     <%- include('../fragmente/header') %>
 
     <main>
-        <section id="welcome">
-            <hgroup>
-    <h2>Bine ați venit!</h2>
-    <h3>Descoperă viitorul educației digitale</h3>
-</hgroup>
-<p>...</p>
-
-
-            <p>Vă mulțumim că ne vizitați. Platforma noastră oferă un mediu sigur pentru a învăța <b>matematică</b> și <b>informatică</b> într-un mod interactiv.</p>
+        <div id="grid-pagina" style="padding: 20px;">
             
-            <blockquote>
-                Educația este esențială. Așa cum spunea marele <cite>Nelson Mandela</cite>, <q>Educația este cea mai puternică armă pe care o poți folosi pentru a schimba lumea.</q>
-            </blockquote>
+            <section class="hero-banner" id="welcome">
+                <h2>Bun venit la Școala pentru toți!</h2>
+                <p>O platformă educațională interactivă unde învățarea devine o plăcere. Descoperă cursuri, rezolvă exerciții și urmărește-ți progresul într-un mediu adaptat nevoilor tale.</p>
+                <a href="/cursuri" class="buton-primar"><i class="fa-solid fa-rocket"></i> Începe să înveți acum</a>
+            </section>
 
-            <figure>
-                <picture>
-                    <source srcset="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg" media="(max-width:700px)">
-                    <source srcset="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg" media="(max-width:1200px)">
-                    <img src="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg" alt="Elevi ridicând mâna în clasă" title="O comunitate activă de elevi" width="600">
-                </picture>
-                <figcaption>O oră de curs interactivă pe platforma noastră.</figcaption>
-            </figure>
-        </section>
+            <div class="sectiuni-principale">
+                
+                <section class="card-info">
+                    <h3><i class="fa-solid fa-users"></i> Cine suntem noi?</h3>
+                    <p>Suntem o echipă dedicată de profesori și dezvoltatori care cred că educația de calitate trebuie să fie accesibilă absolut tuturor.</p>
+                    <p>Folosim metode de <strong>învățare activă</strong> și oferim suport constant cursanților noștri. Peste <mark>5000 de elevi</mark> ne-au trecut pragul virtual.</p>
+                </section>
 
-        <section id="noutati">
-            <h2>Noutăți și Pachete Educaționale</h2>
-            <article>
-                <h3>Ofertă Specială</h3>
-                <p>Anunțăm <strong>reduceri importante</strong> de <s>10%</s> <ins>15%</ins> pentru pachetele premium luna aceasta.</p>
-                <p>Conceptul de <dfn>e-learning</dfn> transformă modul în care asimilăm informația digitală.</p>
-                <p>Modulele noastre sunt conforme cu standardele <abbr title="Ministerul Educației Naționale">MEN</abbr>.</p>
-            </article>
+                <section class="card-info" id="noutati">
+                    <h3><i class="fa-solid fa-newspaper"></i> Ultimele Noutăți <span class="badge-nou">Nou</span></h3>
+                    <ul>
+                        <li><strong>10 Mai 2026:</strong> Am lansat modulul de pregătire intensivă pentru Bacalaureat.</li>
+                        <li><strong>05 Mai 2026:</strong> S-a adăugat o secțiune nouă de <a href="/exercitii">Exerciții interactive</a> la Matematică.</li>
+                        <li><strong>28 Apr 2026:</strong> Actualizarea platformei pentru dispozitive mobile.</li>
+                    </ul>
+                </section>
 
-            <aside>
-                <h3>Anunț Urgent</h3>
-                <p>Simulările pentru examen încep săptămâna viitoare. <em>Pregătiți-vă din timp!</em></p>
-            </aside>
-        </section>
+                <section class="card-info">
+                    <h3><i class="fa-solid fa-lightbulb"></i> De ce să ne alegi?</h3>
+                    <details style="margin-bottom: 10px; cursor: pointer;">
+                        <summary><strong>Flexibilitate totală</strong></summary>
+                        <p style="margin-top: 5px; color: #555;">Înveți în ritmul tău, la orice oră, de pe orice dispozitiv (telefon, tabletă sau laptop).</p>
+                    </details>
+                    <details style="cursor: pointer;">
+                        <summary><strong>Materiale structurate</strong></summary>
+                        <p style="margin-top: 5px; color: #555;">Cursurile noastre sunt create conform programei școlare actuale.</p>
+                    </details>
+                </section>
 
-        <section id="orar">
-            <h2>Orar Consultații Live</h2>
-            <table border="1">
-                <caption>Programul sesiunilor de suport mentori</caption>
-                <thead>
-                    <tr>
-                        <th>Materie</th>
-                        <th>Perioadă</th>
-                        <th>Ziua</th>
-                        <th>Interval dimineață</th>
-                        <th>Pauză</th>
-                        <th>Interval seară</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Matematică</td>
-                        <td rowspan="5">Zile Lucrătoare</td>
-                        <td>Luni</td>
-                        <td>10:00 - 12:00</td>
-                        <td>12:00 - 14:00</td>
-                        <td>14:00 - 20:00</td>
-                    </tr>
-                    <tr>
-                        <td>Informatică</td>
-                        <td>Marți</td>
-                        <td>09:00 - 12:00</td>
-                        <td>12:00 - 14:00</td>
-                        <td>14:00 - 21:00</td>
-                    </tr>
-                    <tr>
-                        <td>Fizică</td>
-                        <td>Miercuri</td>
-                        <td>09:00 - 11:00</td>
-                        <td>11:00 - 13:00</td>
-                        <td>14:00 - 21:00</td>
-                    </tr>
-                    <tr>
-                        <td>Română</td>
-                        <td>Joi</td>
-                        <td>09:00 - 11:00</td>
-                        <td>11:00 - 13:00</td>
-                        <td>14:00 - 21:00</td>
-                    </tr>
-                    <tr>
-                        <td>Informatică</td>
-                        <td>Vineri</td>
-                        <td>09:00 - 12:00</td>
-                        <td>12:00 - 14:00</td>
-                        <td>14:00 - 19:00</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">Programul poate suferi modificări în funcție de sărbători.</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
-        <section id="resurse-vizuale">
-            <h2>Galerie și Resurse</h2>
-            <dl>
-                <dt>Sistem Interactiv</dt>
-                <dd>O metodă de predare bazată pe participarea activă a studentului.</dd>
-            </dl>
-            <ul>
-                <li><a href="https://ro.wikipedia.org/wiki/E-learning" target="_blank">E-learning pe Wikipedia (Extern)</a></li>
-                <li><a href="https://ro.wikipedia.org/wiki/Matematică#Istorie">https://ro.wikipedia.org<wbr>/wiki/<wbr>Matematică<wbr>#Istorie</a></li>
-                <li><a href="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg" download="fundal_educational.jpg">Descarcă imaginea de fundal (Download)</a></li>
-            </ul>
-
-            <figure>
-                <a href="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg">
-                    <img src="./resurse/imagini/istockphoto-1409722748-1024x1024.jpg" alt="Laptop în clasă" title="Click pentru varianta mare" width="200">
-                </a>
-                <figcaption>Exemplu de conținut vizual interactiv.</figcaption>
-            </figure>
-        </section>
-
-        <section id="monitorizare">
-            <h2>Monitorizare și Tutoriale</h2>
-            <aside>
-                <h3>Statistici Platformă</h3>
-                <p>Grad de satisfacție elevi: <meter value="0.92" min="0" max="1" low="0.3" high="0.8" optimum="0.9">92%</meter></p>
-                <p>Timp de inactivitate server: <meter value="0.05" min="0" max="1" low="0.2" high="0.5" optimum="0.1">5%</meter></p>
-            </aside>
-
-            <div id="video-tutorial">
-                <h3>Tutorial Utilizare</h3>
-                <div>
-                    <a href="https://www.youtube.com/embed/zS5G24u10R8" target="ifr-video">Video: Lecție Funcții</a> |
-                    <a href="https://www.youtube.com/embed/xk4_1vDrzzo" target="ifr-video">Video: Căutare Binară</a> |
-                    <a href="https://www.youtube.com/embed/5bId3N7QZec" target="ifr-video">Video: Algoritmi Grafuri</a>
-                </div>
-                <br>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/zS5G24u10R8" name="ifr-video" title="Player Educațional" frameborder="0" allowfullscreen></iframe>
             </div>
-        </section>
 
-        <section id="faq">
-            <h2>Întrebări Frecvente</h2>
-            <details>
-                <summary>Cum mă înscriu la un curs?</summary>
-                <p>Trebuie să îți creezi un cont și să alegi materia dorită din meniul Cursuri.</p>
-            </details>
-        </section>
+        </div>
     </main>
 
     <%- include('../fragmente/footer') %>
 </body>
-
 </html>

@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include('../fragmente/head') %>
-    <title>Acasă - Școala pentru toți</title>
+    <title>Teste - Școala pentru toți</title>
 </head>
-
-<body id="top">
+<body>
     <%- include('../fragmente/header') %>
-
     <main>
-        <section id="welcome">
-            <hgroup>
-    </main>
+        <div id="grid-pagina">
+            <section>
+                <h2>Calendar Testări și Tutoriale</h2>
+                
+                <ul>
+                    <li>
+                        <time datetime="2026-05-15T09:00">15 Mai, ora 09:00</time> - 
+                        <b>Simulare Bacalaureat</b>: Testare la nivel național.
+                    </li>
+                    <li>
+                        <time datetime="2026-06-01T10:00">1 Iunie, ora 10:00</time> - 
+                        <b>Concurs Informatică</b>: "Codul de Aur".
+                    </li>
+                </ul>
 
+                <br>
+                <h3>Tutoriale Video</h3>
+                <div style="margin-bottom: 10px;">
+                    <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="video_iframe">Tutorial 1</a> | 
+                    <a href="https://www.youtube.com/embed/jNQXAC9IVRw" target="video_iframe">Tutorial 2</a> |
+                    <a href="https://www.youtube.com/embed/V6XIn5676-A" target="video_iframe">Revenire la video inițial</a>
+                </div>
+                <iframe name="video_iframe" width="560" height="315" src="https://www.youtube.com/embed/V6XIn5676-A" frameborder="0" allowfullscreen></iframe>
+            </section>
+        </div>
+    </main>
     <%- include('../fragmente/footer') %>
 </body>
-
 </html>
