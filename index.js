@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-// --- TASK 20: Crearea folderelor necesare ---
+
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 for (let folder of vect_foldere) {
     let caleFolder = path.join(__dirname, folder);
@@ -13,15 +13,56 @@ for (let folder of vect_foldere) {
     }
 }
 
-// --- CONFIGURARE EJS ȘI RESURSE ---
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// AICI ERA PROBLEMA: Legăm URL-ul '/resurse' de folderul fizic 'Resurse' (cu R mare)
+
 app.use('/resurse', express.static(path.join(__dirname, 'Resurse')));
 
-// --- TASK 19: Gestionare favicon.ico ---
-// Am modificat calea să meargă exact în folderul "ico" din poza ta
+let obGlobal = {
+    obErori: null
+};
+
+function initErori() {
+    let continut = fs.readFileSync(path.join(__dirname, 'erori.json'), 'utf8');
+    obGlobal.obErori = JSON.parse(continut);
+    
+
+    let erori = obGlobal.obErori.info_erori;
+    for (let eroare of erori) {
+
+        eroare.imagine = path.posix.join(obGlobal.obErori.cale_baza, eroare.imagine);
+    }
+  
+    obGlobal.obErori.eroare_default.imagine = path.posix.join(obGlobal.obErori.cale_baza, obGlobal.obErori.eroare_default.imagine);
+}
+initErori(); 
+
+
+function afisareEroare(res, identificator, titlu, text, imagine) {
+    let eroareDefault = obGlobal.obErori.eroare_default;
+
+    let eroareCurenta = obGlobal.obErori.info_erori.find(e => e.identificator == identificator) || eroareDefault;
+
+
+    let titluDeAfisat = titlu || eroareCurenta.titlu;
+    let textDeAfisat = text || eroareCurenta.text;
+    let imagineDeAfisat = imagine || eroareCurenta.imagine;
+
+    if (eroareCurenta.status) {
+        res.status(identificator || 404); 
+    }
+    
+
+    res.render('pagini/eroare', {
+        titlu: titluDeAfisat,
+        text: textDeAfisat,
+        imagine: imagineDeAfisat
+    });
+}
+
+
 app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'Resurse', 'imagini', 'ico', 'favicon.ico'));
 });
@@ -48,21 +89,27 @@ app.get('/cont', (req, res) => {
 });
 
 app.get('/:numePagina', (req, res) => {
-    
     let numePagina = req.params.numePagina; 
     
     res.render('pagini/' + numePagina, function(err, html) {
         if (err) {
             if (err.message.startsWith("Failed to lookup view")) {
-                res.status(404).send("Pagina nu a fost găsită! (Vom stiliza asta imediat)");
+                afisareEroare(res, 404);
             } else {
-                res.status(500).send("Eroare server!");
+                afisareEroare(res, 500, "Eroare Server", "Ceva a mers greșit în spate.");
             }
         } else {
             res.send(html);
         }
     });
 });
+
+
+app.use((req, res) => {
+    afisareEroare(res, 404);
+});
+
+
 app.listen(8080, () => {
     console.log('Serverul Express a pornit cu succes pe portul 8080!');
 });

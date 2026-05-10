@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+    <title><%= titlu %> - Școala pentru toți</title>
+    
+    <style>
+        /* --- STILIZARE SPECIFICĂ PAGINII DE EROARE --- */
+        #sectiune-eroare {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        #sectiune-eroare h2 {
+            color: #d9534f; /* Un roșu plăcut pentru eroare */
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* O mică umbră la text */
+        }
+
+        #sectiune-eroare p {
+            font-size: 1.2em;
+            color: #444;
+            margin-bottom: 30px;
+            max-width: 600px; /* Să nu se întindă textul prea mult pe ecrane mari */
+            line-height: 1.5;
+        }
+
+        .imagine-eroare {
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+            border-radius: 15px; /* Colțuri rotunjite frumos */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Umbră modernă pentru imagine */
+            transition: transform 0.3s ease; /* Animație fluidă */
+        }
+
+        .imagine-eroare:hover {
+            transform: scale(1.03); /* Imaginea se mărește puțin când pui mouse-ul pe ea */
+        }
+
+        .buton-intoarcere {
+            background-color: #2b618a; /* Albastrul folosit în meniul tău */
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .buton-intoarcere:hover {
+            background-color: #1d4361; /* Se închide la culoare pe hover */
+            transform: translateY(-3px); /* Butonul se ridică puțin */
+            color: white;
+        }
+
+        .buton-intoarcere i {
+            margin-right: 8px; /* Spațiu între iconiță și text */
+        }
+    </style>
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main>
+        <div id="grid-pagina">
+            <section id="sectiune-eroare">
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> <%= titlu %></h2>
+                <p><%= text %></p>
+                
+                <img src="<%= imagine %>" alt="Imagine reprezentativă eroare" class="imagine-eroare">
+                
+                <a href="/" class="buton-intoarcere">
+                    <i class="fa-solid fa-house"></i> Întoarce-te la pagina principală
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+</body>
+</html>
