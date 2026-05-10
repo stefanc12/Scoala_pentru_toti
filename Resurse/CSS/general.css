@@ -30,7 +30,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap-grid);
-    margin-top: 20px;
+    margin-top: var(--gap-grid );
+    padding-bottom: var(--gap-grid);
 }
 
 
@@ -39,7 +40,7 @@ header, footer, section {
     padding: var(--padding-zone);
     border-radius: var(--raza-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    
 }
 
 header {
