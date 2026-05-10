@@ -1,4 +1,5 @@
 const express = require('express');
+const oracledb= require('oracledb');
 const fs = require('fs');
 const path = require('path');
 
@@ -17,9 +18,18 @@ for (let folder of vect_foldere) {
     }
 }
 
+const dbConfig = {
+    user: "system",
+    password: "parola123",
+    connectString: "localhost:1521/xe"
+};
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     if (req.url.endsWith('.ejs')) {
@@ -144,6 +154,67 @@ app.get('/:numePagina', (req, res) => {
     });
 });
 
+app.get('/cursuri', async (req, res) => {
+    let connection;
+    try {
+        connection = await oracledb.getConnection(dbConfig);
+        
+        
+        const result = await connection.execute(
+            `SELECT * FROM CURSURI`,
+            [], // nu avem parametri de binding aici
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+
+        res.render('pagini/cursuri', { 
+            cursuri: result.rows 
+        });
+
+    } catch (err) {
+        console.error("Eroare la extragerea cursurilor:", err);
+        res.status(500).send("A apărut o eroare la server.");
+    } finally {
+        if (connection) {
+            try { await connection.close(); } catch (err) { console.error(err); }
+        }
+    }
+});
+
+app.post('/adauga-curs', async (req, res) => {
+    let connection;
+    try {
+        
+        const titlu = req.body.titlu;
+        const descriere = req.body.descriere;
+        const id_domeniu = req.body.id_domeniu; 
+
+        connection = await oracledb.getConnection(dbConfig);
+
+
+        await connection.execute(
+            `INSERT INTO CURSURI (ID_Curs, ID_Domeniu, Titlu, Descriere) 
+             VALUES (seq_cursuri.NEXTVAL, :domeniu, :titlu, :descriere)`,
+            {
+                domeniu: id_domeniu,
+                titlu: titlu,
+                descriere: descriere
+            },
+            { autoCommit: true } 
+        );
+
+        console.log("Curs adăugat cu succes!");
+        
+        res.redirect('/cursuri');
+
+    } catch (err) {
+        console.error("Eroare la inserarea cursului:", err);
+        res.status(500).send("Eroare la salvarea în baza de date.");
+    } finally {
+        if (connection) {
+            try { await connection.close(); } catch (err) { console.error(err); }
+        }
+    }
+});
 
 app.use((req, res) => {
     afisareEroare(res, 404);
