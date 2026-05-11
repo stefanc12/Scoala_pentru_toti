@@ -100,31 +100,31 @@ CREATE TABLE CONSULTATII (
 
 
 
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Matematică', 'Cursuri de algebră, geometrie și analiză matematică.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Informatică', 'Algoritmi, structuri de date și programare.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Fizică', 'Mecanică, termodinamică și electricitate.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Limba Română', 'Gramatică și literatură română pentru examene.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Istorie', 'Istoria românilor și istorie universală.');
+INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Matematică - nivel de liceu', 'Cursuri de algebră, geometrie și analiză matematică.');
+INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Informatică - nivel de liceu', 'Algoritmi elementari, structuri de date și programare procedurala.');
 
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Popescu Ion', 'ion@email.com', 'hash1', 'Student', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Ionescu Maria', 'maria@email.com', 'hash2', 'Student', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Dumitru Vasile', 'vasile@email.com', 'hash3', 'Profesor', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Stan Andreea', 'andreea@email.com', 'hash4', 'Profesor', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Marin George', 'george@email.com', 'hash5', 'Student', SYSDATE);
+INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Matematica - nivel de facultate', 'Cursuri de algebră liniară, analiză matematică și probabilități.');
+INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Informatică - nivel de facultate', 'Programare orientată pe obiecte, baze de date și inteligență artificială.');
 
 
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică'), 'Analiză Matematică Clasa a XI-a', 'Limite, derivate și studiul funcțiilor.');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică'), 'Programare Orientată pe Obiecte', 'Concepte OOP în C++ și Java.');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică'), 'Grafuri și Arbori', 'Algoritmi avansați pentru olimpiadă.');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Fizică'), 'Fizică Mecanică', 'Cinematică și dinamică.');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Limba Română'), 'Eseu Bacalaureat', 'Cum să scrii un eseu de nota 10.');
+INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Popescu', 'Ion', 'ion@email.com', 'hash1', 'Student', SYSDATE);
+INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Ionescu', 'Maria', 'maria@email.com', 'hash2', 'Student', SYSDATE);
+INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Dumitru', 'Vasile', 'vasile@email.com', 'hash3', 'Profesor', SYSDATE);
+INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Stan', 'Andreea', 'andreea@email.com', 'hash4', 'Profesor', SYSDATE);
+INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Marin', 'George', 'george@email.com', 'hash5', 'Student', SYSDATE);
+
+
+INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de liceu'), 'Analiză Matematică Clasa a XI-a', 'Limite, derivate și studiul funcțiilor.');
+iNSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de liceu'), 'Geometrie Analitică', 'Puncte, drepte și conice în plan.');
+insert INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de facultate'), 'Algebră Lineară', 'Vectori, matrici și sisteme liniare.');
+INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică - nivel de facultate'), 'Programare Orientată pe Obiecte', 'Concepte OOP în C++');
+INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică - nivel de facultate'), 'Teoria grafurilor', 'Algoritmi avansați pentru grafuri și arbori.');
 
 
 INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), 'Derivata unei funcții', 'Definiția derivatei și reguli de calcul.');
 INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), 'Clase și Obiecte', 'Instanțiere și constructori în OOP.');
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Grafuri și Arbori'), 'Parcurgerea BFS și DFS', 'Teorie grafuri și cozi.');
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Fizică Mecanică'), 'Principiile mecanicii', 'Cele 3 principii ale lui Newton.');
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Eseu Bacalaureat'), 'Luceafărul - Analiză', 'Tema și viziunea despre lume.');
+INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Parcurgerea BFS și DFS', 'Teorie grafuri și cozi.');
+
 
 
 INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Derivata unei funcții'), 'Calculează derivata lui x^2', 'Ușor', '2x');
@@ -136,9 +136,11 @@ INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECT
 
 INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), 'Test Analiză Cap. 1', 'Capitol');
 INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), 'Simulare Info OOP', 'Bacalaureat');
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Grafuri și Arbori'), 'Admitere UBB Info', 'Admitere');
+INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Test Teorie Grafuri', 'Examen Facultate');
 INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Fizică Mecanică'), 'Test Dinamică', 'Capitol');
 INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Eseu Bacalaureat'), 'Subiectul III Română', 'Bacalaureat');
+
+
 
 
 INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), SYSDATE);
