@@ -3,6 +3,8 @@ const oracledb= require('oracledb');
 const fs = require('fs');
 const path = require('path');
 
+const session = require('express-session');
+
 const app = express();
 
 console.log("Calea folderului (__dirname):", __dirname);
@@ -31,6 +33,19 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(session({
+    secret: 'secret-proiect-facultate', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
+
+app.use((req, res, next) => {
+    res.locals.utilizator = req.session.utilizator || null;   
+    res.locals.caleCurenta = req.path; 
+    next();
+});
+
 app.use((req, res, next) => {
     if (req.url.endsWith('.ejs')) {
         return afisareEroare(res, 400); 
@@ -56,19 +71,10 @@ let obGlobal = {
 app.use((req, res, next) => {
 
     let ipUtilizator = req.ip || req.connection.remoteAddress;
-
-
     res.locals.ip = ipUtilizator;
-
-
     let dataCurenta = new Date().toLocaleString('ro-RO'); 
-    
-
     let mesajLog = `[${ipUtilizator}] [${dataCurenta}] ${req.method} ${req.url}\n`;
-    
     let caleLog = path.join(__dirname, 'logs', 'cereri.log');
-    
-
     fs.appendFileSync(caleLog, mesajLog);
 
     next(); 
@@ -117,25 +123,139 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'Resurse', 'imagini', 'ico', 'favicon.ico'));
 });
 
-// --- TASK 8: Rutele Paginilor Principale ---
+
+
+app.post('/inregistrare', async (req, res) => {
+    let connection;
+    try {
+        const { nume, prenume, email, parola, rol } = req.body;
+        connection = await oracledb.getConnection(dbConfig);
+        await connection.execute(
+            `INSERT INTO UTILIZATORI (ID_Utilizator, Nume, Prenume, Email, HashParola, Rol) 
+             VALUES (seq_platforma.NEXTVAL, :nume, :prenume, :email, :parola, :rol)`,
+            { nume, prenume, email, parola, rol: rol || 'Student' },
+            { autoCommit: true }
+        );
+        res.redirect('/cont?succes=inregistrat');
+    } catch (err) {
+        console.error(err);
+        res.redirect('/cont?eroare=existent');
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.post('/logare', async (req, res) => {
+    let connection;
+    try {
+        const { email, parola } = req.body;
+        connection = await oracledb.getConnection(dbConfig);
+        const result = await connection.execute(
+            `SELECT * FROM UTILIZATORI WHERE Email = :email AND HashParola = :parola`,
+            { email, parola },
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+
+        if (result.rows.length > 0) {
+            req.session.utilizator = result.rows[0];
+            res.redirect('/');
+        } else {
+            res.redirect('/cont?eroare=date_incorecte');
+        }
+    } catch (err) {
+        res.status(500).send("Eroare server");
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.get('/cont', async (req, res) => {
+    if (!req.session.utilizator) {
+        return res.render('pagini/cont');
+    }
+
+    let connection;
+    try {
+        connection = await oracledb.getConnection(dbConfig);
+        const userId = req.session.utilizator.ID_UTILIZATOR;
+
+
+        const cursuriSalvate = await connection.execute(
+            `SELECT c.TITLU, c.ID_CURS FROM CURSURI_SALVATE cs 
+             JOIN CURSURI c ON cs.ID_CURS = c.ID_CURS 
+             WHERE cs.ID_UTILIZATOR = :id`,
+            [userId],
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+
+
+        let rezultateTeste = [];
+        if (req.session.utilizator.ROL === 'Student') {
+            const result = await connection.execute(
+                `SELECT t.TITLU, rt.SCORFINAL, TO_CHAR(rt.TRIMISLA, 'DD-MM-YYYY') as DATA 
+                 FROM REZULTATE_TESTE rt 
+                 JOIN TESTE t ON rt.ID_TEST = t.ID_TEST 
+                 WHERE rt.ID_UTILIZATOR = :id`,
+                [userId],
+                { outFormat: oracledb.OUT_FORMAT_OBJECT }
+            );
+            rezultateTeste = result.rows;
+        }
+
+
+        res.render('pagini/cont', {
+            utilizator: req.session.utilizator,
+            cursuriSalvate: cursuriSalvate.rows,
+            rezultateTeste: rezultateTeste
+        });
+
+    } catch (err) {
+        console.error("Eroare la încărcarea datelor de profil:", err);
+        res.status(500).send("Eroare la baza de date.");
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
+app.get('/cursuri', async (req, res) => {
+    let connection;
+    try {
+        connection = await oracledb.getConnection(dbConfig);
+        const result = await connection.execute(`SELECT * FROM CURSURI`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        res.render('pagini/cursuri', { cursuri: result.rows });
+    } catch (err) {
+        console.error("detaliile erorii:", err);
+        res.status(500).send("Eroare DB" + err.message);
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.post('/adauga-curs', async (req, res) => {
+    let connection;
+    try {
+        const { titlu, descriere, id_domeniu } = req.body;
+        connection = await oracledb.getConnection(dbConfig);
+        await connection.execute(
+            `INSERT INTO CURSURI (ID_Curs, ID_Domeniu, Titlu, Descriere) VALUES (seq_platforma.NEXTVAL, :domeniu, :titlu, :descriere)`,
+            { domeniu: id_domeniu, titlu, descriere },
+            { autoCommit: true }
+        );
+        res.redirect('/cursuri');
+    } catch (err) {
+        res.status(500).send("Eroare inserare");
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
 app.get(['/', '/index', '/home'], (req, res) => {
     res.render('pagini/index');
-});
-
-app.get('/cursuri', (req, res) => {
-    res.render('pagini/cursuri');
-});
-
-app.get('/exercitii', (req, res) => {
-    res.render('pagini/exercitii');
-});
-
-app.get('/teste', (req, res) => {
-    res.render('pagini/teste');
-});
-
-app.get('/cont', (req, res) => {
-    res.render('pagini/cont');
 });
 
 app.get('/:numePagina', (req, res) => {
@@ -154,67 +274,6 @@ app.get('/:numePagina', (req, res) => {
     });
 });
 
-app.get('/cursuri', async (req, res) => {
-    let connection;
-    try {
-        connection = await oracledb.getConnection(dbConfig);
-        
-        
-        const result = await connection.execute(
-            `SELECT * FROM CURSURI`,
-            [], // nu avem parametri de binding aici
-            { outFormat: oracledb.OUT_FORMAT_OBJECT }
-        );
-
-        res.render('pagini/cursuri', { 
-            cursuri: result.rows 
-        });
-
-    } catch (err) {
-        console.error("Eroare la extragerea cursurilor:", err);
-        res.status(500).send("A apărut o eroare la server.");
-    } finally {
-        if (connection) {
-            try { await connection.close(); } catch (err) { console.error(err); }
-        }
-    }
-});
-
-app.post('/adauga-curs', async (req, res) => {
-    let connection;
-    try {
-        
-        const titlu = req.body.titlu;
-        const descriere = req.body.descriere;
-        const id_domeniu = req.body.id_domeniu; 
-
-        connection = await oracledb.getConnection(dbConfig);
-
-
-        await connection.execute(
-            `INSERT INTO CURSURI (ID_Curs, ID_Domeniu, Titlu, Descriere) 
-             VALUES (seq_cursuri.NEXTVAL, :domeniu, :titlu, :descriere)`,
-            {
-                domeniu: id_domeniu,
-                titlu: titlu,
-                descriere: descriere
-            },
-            { autoCommit: true } 
-        );
-
-        console.log("Curs adăugat cu succes!");
-        
-        res.redirect('/cursuri');
-
-    } catch (err) {
-        console.error("Eroare la inserarea cursului:", err);
-        res.status(500).send("Eroare la salvarea în baza de date.");
-    } finally {
-        if (connection) {
-            try { await connection.close(); } catch (err) { console.error(err); }
-        }
-    }
-});
 
 app.use((req, res) => {
     afisareEroare(res, 404);

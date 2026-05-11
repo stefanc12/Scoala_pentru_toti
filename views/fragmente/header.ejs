@@ -4,20 +4,36 @@
         <h1>Școala pentru toți</h1> 
     </a>
 
+    <div class="user-menu" style="margin-left: auto; display: flex; align-items: center;">
+        <% if (locals.utilizator) { %>
+            <span style="margin-right: 25px; font-weight: bold; color: #2c3e50;">
+                Salut, <%= utilizator.PRENUME %>! 
+            </span>
+        <% } else { %>
+            <a href="/cont" style="padding: 8px 15px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Log in / Sign in</a>
+        <% } %>
+    </div>
+
     <div id="hamburger-menu">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <nav>   
-        <ul>    
-            <li><a href="/cursuri"><i class="fa-solid fa-book"></i> Cursuri și Lecții</a></li>
-            <li><a href="/exercitii"><i class="fa-solid fa-pencil"></i> Exerciții Practice</a></li>
-            <li><a href="/teste"><i class="fa-solid fa-file-contract"></i> Teste de Evaluare</a></li>
-            <li><a href="/cont"><i class="fa-solid fa-user"></i> Contul meu</a></li>
-        </ul>
-    </nav>
+    <nav>
+    <ul>
+        <li><a href="/" class="<%= locals.caleCurenta === '/' || locals.caleCurenta === '/index' ? 'activ' : '' %>">Acasă</a></li>
+        <li><a href="/cursuri" class="<%= locals.caleCurenta === '/cursuri' ? 'activ' : '' %>">Cursuri</a></li>
+        <li><a href="/exercitii" class="<%= locals.caleCurenta === '/exercitii' ? 'activ' : '' %>">Exerciții</a></li>
+        <li><a href="/teste" class="<%= locals.caleCurenta === '/teste' ? 'activ' : '' %>">Teste</a></li>
+
+        <% if (locals.utilizator) { %>
+                <li>
+                    <a href="/cont" class="<%= locals.caleCurenta === '/cont' ? 'activ' : '' %>">Contul meu</a>
+                </li>
+            <% } %>
+    </ul>
+</nav>
 </header>
 
 <style>

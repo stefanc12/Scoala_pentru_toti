@@ -5,6 +5,7 @@
     <title>Contul meu - Școala pentru toți</title>
     
     <style>
+ 
         .card-profil {
             max-width: 500px;
             margin: 40px auto;
@@ -16,30 +17,94 @@
         }
 
         .avatar-utilizator {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%; 
-    border: 4px solid #2b618a; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-    
-    object-fit: cover; 
-    object-position: top; 
-}
+            width: 160px;
+            height: 160px;
+            border-radius: 50%; 
+            border: 4px solid #2b618a; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            object-fit: cover; 
+            object-position: top; 
+        }
 
         .avatar-utilizator:hover {
-            transform: scale(1.05); /* Efect fin de mărire la hover */
+            transform: scale(1.05);
         }
 
-        .info-profil h3 {
-            margin: 10px 0 5px 0;
-            color: #333;
+        .info-profil h3 { margin: 10px 0 5px 0; color: #333; }
+        .info-profil p { color: #666; margin: 5px 0; }
+
+
+        .container-formulare {
+            max-width: 450px; 
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .info-profil p {
-            color: #666;
-            margin: 5px 0;
+        .form-box {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-box input, .form-box select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: opacity 0.2s;
+        }
+        .btn-submit:hover { opacity: 0.9; }
+        .btn-login { background-color: #3498db; }
+        .btn-register { background-color: #2ecc71; }
+
+        .btn-logout {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+
+        .toggle-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .toggle-link a {
+            color: #2b618a;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .toggle-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -47,21 +112,180 @@
     <%- include('../fragmente/header') %>
     <main>
         <div id="grid-pagina">
-            <section class="card-profil">
-                <h2>Profilul Meu</h2>
+            
+            <% if (locals.utilizator) { %>
                 
-                <figure style="margin: 0;">
-                    <img src="/resurse/imagini/avatar.png" alt="Avatar utilizator" class="avatar-utilizator">
-                </figure>
+                <section class="card-profil">
+                    <h2>Profilul Meu</h2>
+                    
+                    <figure style="margin: 0;">
+                        <img src="/resurse/imagini/avatar.png" alt="Avatar utilizator" class="avatar-utilizator">
+                    </figure>
 
-                <div class="info-profil">
-                    <h3>Cornaciu Adrian Ștefan</h3>
-                    <p>Statut: <cite>Elev activ</cite></p>
-                    <p>Membru din: <time datetime="2026-02-10">Februarie 2026</time></p>
+                    <div class="info-profil">
+                        <h3><%= utilizator.NUME %> <%= utilizator.PRENUME %></h3>
+                        <p>Statut: <cite><%= utilizator.ROL %></cite></p>
+                        <p>Email: <strong><%= utilizator.EMAIL %></strong></p>
+                    </div>
+
+                    <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px;">
+                        <a href="/logout" class="btn-logout" style="margin-top: 0; background-color: #7f8c8d;">Deconectare</a>
+                        
+                        <form action="/sterge-cont" method="POST" onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest cont? Datele nu pot fi recuperate.');">
+                            <button type="submit" class="btn-logout" style="margin-top: 0;">Șterge Contul</button>
+                        </form>
+                    </div>
+                </section>
+
+                <% if (locals.utilizator) { %>
+                    <section class="dashboard-utilizator" style="max-width: 1000px; margin: 20px auto; padding: 20px;">
+                        <h2 style="text-align: center; border-bottom: 2px solid #2b618a; padding-bottom: 10px;">Panou de Control - <%= utilizator.ROL %></h2>
+
+                        <div style="display: flex; flex-direction: row; gap: 30px; margin-top: 30px; align-items: flex-start;">
+                            
+                            <div class="dash-card" style="flex: 1; background: #f9f9f9; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                                <h3 style="color: #2c3e50; margin-top: 0;">📚 Cursuri Salvate</h3>
+                                <ul style="list-style: none; padding: 0;">
+                                    <% if (locals.cursuriSalvate && cursuriSalvate.length > 0) { %>
+                                        <% cursuriSalvate.forEach(function(curs) { %>
+                                            <li style="padding: 10px 0; border-bottom: 1px solid #ddd;">
+                                                <a href="/cursuri#<%= curs.ID_CURS %>" style="text-decoration: none; color: #3498db; font-weight: 500;">
+                                                    ● <%= curs.TITLU %>
+                                                </a>
+                                            </li>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <p style="color: #7f8c8d; font-style: italic;">Nu ai salvat niciun curs încă.</p>
+                                    <% } %>
+                                </ul>
+                            </div>
+
+                            <div class="dash-card" style="flex: 1; background: #f9f9f9; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                                
+                                <% if (utilizator.ROL === 'Student') { %>
+                                    <h3 style="color: #2c3e50; margin-top: 0;">📝 Teste Rezolvate</h3>
+                                    <% if (locals.rezultateTeste && rezultateTeste.length > 0) { %>
+                                        <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                            <thead>
+                                                <tr style="text-align: left; border-bottom: 2px solid #ccc;">
+                                                    <th style="padding-bottom: 8px;">Test</th>
+                                                    <th style="padding-bottom: 8px;">Scor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% rezultateTeste.forEach(function(r) {
+                                                    var scoreColor = r.SCORFINAL >= 50 ? '#27ae60' : '#e74c3c'; %>
+                                                    <tr>
+                                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee;"><%= r.TITLU %></td>
+                                                        <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold;" style="color: <%= scoreColor %>;">
+                                                            <%= r.SCORFINAL %>%
+                                                        </td>
+                                                    </tr>
+                                                <% }); %>
+                                            </tbody>
+                                        </table>
+                                    <% } else { %>
+                                        <p style="color: #7f8c8d; font-style: italic;">Nu ai susținut niciun test.</p>
+                                    <% } %>
+
+                                    <h3 style="color: #2c3e50; margin-top: 25px;">✅ Exerciții Rezolvate</h3>
+                                    <p style="color: #7f8c8d; font-style: italic;">Istoricul exercițiilor va fi disponibil în curând.</p>
+
+                                <% } else { %>
+                                    <h3 style="color: #2c3e50; margin-top: 0;"> Administrare Materiale</h3>
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li style="padding: 12px 0;">
+                                            <a href="/exercitii" style="text-decoration: none; color: #2ecc71; font-weight: bold; font-size: 1.1em;">
+                                                 Propune Exerciții Noi
+                                            </a>
+                                        </li>
+                                        <li style="padding: 10px 0; border-top: 1px solid #ddd; color: #555;"> Exerciții Create de tine</li>
+                                        <li style="padding: 10px 0; border-top: 1px solid #ddd; color: #555;"> Teste Publicate</li>
+                                    </ul>
+                                    <p style="font-size: 0.85em; color: #95a5a6; margin-top: 20px;">* Secțiune dedicată creatorilor de conținut.</p>
+                                <% } %>
+                            </div>
+
+                        </div>
+                    </section>
+                <% } %>
+
+            <% } else { %>
+                
+                <h1 style="text-align: center; color: #e74c3c; margin-top: 40px;">Nu ești conectat.</h1>
+                <p style="text-align: center; margin-bottom: 30px;">Te rugăm să te autentifici pentru a accesa platforma.</p>
+
+                <div class="container-formulare">
+                    
+                    <div id="form-login" class="form-box">
+                        <h2 style="margin-top: 0; color: #3498db; text-align: center;">Autentificare</h2>
+                        <form action="/logare" method="POST">
+                            <label for="email_login">Email:</label>
+                            <input type="email" id="email_login" name="email" placeholder="nume@email.com" required>
+                            
+                            <label for="parola_login">Parolă:</label>
+                            <input type="password" id="parola_login" name="parola" placeholder="Introdu parola" required>
+                            
+                            <button type="submit" class="btn-submit btn-login">Intră în cont</button>
+                        </form>
+                        
+                        <div class="toggle-link">
+                            Nu ai cont? <a href="#" onclick="toggleForms(event, 'register')">Înregistrează-te</a>
+                        </div>
+                    </div>
+
+                    <div id="form-register" class="form-box" style="display: none;">
+                        <h2 style="margin-top: 0; color: #2ecc71; text-align: center;">Creează Cont</h2>
+                        <form action="/inregistrare" method="POST">
+                            <label for="nume_reg">Nume (Familie):</label>
+                            <input type="text" id="nume_reg" name="nume" placeholder="ex: Popescu" required>
+                            
+                            <label for="prenume_reg">Prenume:</label>
+                            <input type="text" id="prenume_reg" name="prenume" placeholder="ex: Ion" required>
+                            
+                            <label for="email_reg">Email:</label>
+                            <input type="email" id="email_reg" name="email" placeholder="nume@email.com" required>
+                            
+                            <label for="parola_reg">Parolă:</label>
+                            <input type="password" id="parola_reg" name="parola" placeholder="Minim 6 caractere" required>
+                            
+                            <label for="rol_reg">Rolul tău:</label>
+                            <select id="rol_reg" name="rol">
+                                <option value="Student">Student (Elev)</option>
+                                <option value="Profesor">Profesor</option>
+                            </select>
+                            
+                            <button type="submit" class="btn-submit btn-register">Finalizează Înregistrarea</button>
+                        </form>
+
+                        <div class="toggle-link">
+                            Ai deja cont? <a href="#" onclick="toggleForms(event, 'login')">Autentifică-te</a>
+                        </div>
+                    </div>
+
                 </div>
-            </section>
+
+            <% } %>
+
         </div>
     </main>
     <%- include('../fragmente/footer') %>
+
+    <script>
+        function toggleForms(event, formType) {
+            event.preventDefault(); 
+            
+            const formLogin = document.getElementById('form-login');
+            const formRegister = document.getElementById('form-register');
+
+            if (formType === 'register') {
+                formLogin.style.display = 'none';
+                formRegister.style.display = 'block';
+            } else {
+                formRegister.style.display = 'none';
+                formLogin.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>

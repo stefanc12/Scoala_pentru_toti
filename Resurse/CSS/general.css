@@ -97,7 +97,12 @@ nav ul li a:hover {
     color: var(--culoare-secundara);
 }
 
-/* Submeniu Ascuns implicit */
+nav ul li a.activ {
+    color: var(--culoare-secundara); 
+    border-bottom: 3px solid var(--culoare-secundara); 
+    padding-bottom: 5px; 
+}
+
 nav ul li ul {
     display: none;
     position: absolute;

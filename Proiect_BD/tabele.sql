@@ -27,6 +27,7 @@ CREATE TABLE DOMENII (
 CREATE TABLE UTILIZATORI (
     ID_Utilizator INT PRIMARY KEY,
     Nume VARCHAR2(100) NOT NULL,
+    Prenume VARCHAR2(100) NOT NULL,
     Email VARCHAR2(100) UNIQUE NOT NULL,
     HashParola VARCHAR2(255) NOT NULL,
     Rol VARCHAR2(20) CHECK (Rol IN ('Student', 'Profesor')),
@@ -174,5 +175,7 @@ INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FRO
 INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP + INTERVAL '4' DAY, 150.00, 'InAsteptare');
 INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP - INTERVAL '10' DAY, 120.00, 'Finalizata');
 INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP + INTERVAL '7' DAY, 120.00, 'InAsteptare');
+
+
 
 COMMIT;
