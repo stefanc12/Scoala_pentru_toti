@@ -22,7 +22,7 @@ for (let folder of vect_foldere) {
 
 const dbConfig = {
     user: "system",
-    password: "parola123",
+    password: "Test123",
     connectString: "localhost:1521/xe"
 };
 

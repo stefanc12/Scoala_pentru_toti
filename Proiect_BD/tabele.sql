@@ -98,85 +98,75 @@ CREATE TABLE CONSULTATII (
 );
 
 
+insert into domenii values (seq_platforma.NEXTVAL, 'Matematica - nivel de liceu', 'Cursuri de algebra, geometrie și analiza matematica.');
+insert into domenii values (seq_platforma.NEXTVAL, 'Informatica - nivel de liceu', 'Algoritmi elementari, structuri de date și programare procedurala.');
+
+insert into domenii values (seq_platforma.NEXTVAL, 'Matematica - nivel de facultate', 'Cursuri de algebră liniara, analiza matematica și probabilități.');
+insert into domenii values (seq_platforma.NEXTVAL, 'Informatica - nivel de facultate', 'Programare orientata pe obiecte, baze de date și inteligența artificiala.');
 
 
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Matematică - nivel de liceu', 'Cursuri de algebră, geometrie și analiză matematică.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Informatică - nivel de liceu', 'Algoritmi elementari, structuri de date și programare procedurala.');
-
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Matematica - nivel de facultate', 'Cursuri de algebră liniară, analiză matematică și probabilități.');
-INSERT INTO DOMENII VALUES (seq_platforma.NEXTVAL, 'Informatică - nivel de facultate', 'Programare orientată pe obiecte, baze de date și inteligență artificială.');
-
-
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Popescu', 'Ion', 'ion@email.com', 'hash1', 'Student', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Ionescu', 'Maria', 'maria@email.com', 'hash2', 'Student', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Dumitru', 'Vasile', 'vasile@email.com', 'hash3', 'Profesor', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Stan', 'Andreea', 'andreea@email.com', 'hash4', 'Profesor', SYSDATE);
-INSERT INTO UTILIZATORI VALUES (seq_platforma.NEXTVAL, 'Marin', 'George', 'george@email.com', 'hash5', 'Student', SYSDATE);
+insert into utilizatori values (seq_platforma.NEXTVAL, 'Popescu', 'Ion', 'ion@gmail.com', 'hash1', 'Student', sysdate);
+insert into utilizatori values (seq_platforma.NEXTVAL, 'Ionescu', 'Maria', 'maria@yahoo.com', 'hash2', 'Student', sysdate);
+insert into utilizatori values (seq_platforma.NEXTVAL, 'Dumitru', 'Vasile', 'vasile@gmail.com', 'hash3', 'Profesor', sysdate);
+insert into utilizatori values (seq_platforma.NEXTVAL, 'Stan', 'Andreea', 'andreea@gmail.com', 'hash4', 'Profesor', sysdate);
+insert into utilizatori values (seq_platforma.NEXTVAL, 'Marin', 'George', 'george@gmail.com', 'hash5', 'Student', sysdate);
 
 
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de liceu'), 'Analiză Matematică Clasa a XI-a', 'Limite, derivate și studiul funcțiilor.');
-iNSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de liceu'), 'Geometrie Analitică', 'Puncte, drepte și conice în plan.');
-insert INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematică - nivel de facultate'), 'Algebră Lineară', 'Vectori, matrici și sisteme liniare.');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică - nivel de facultate'), 'Programare Orientată pe Obiecte', 'Concepte OOP în C++');
-INSERT INTO CURSURI VALUES (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatică - nivel de facultate'), 'Teoria grafurilor', 'Algoritmi avansați pentru grafuri și arbori.');
+insert into cursuri values (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematica - nivel de liceu'), 'Analiza Matematica Clasa a XI-a', 'Limite, derivate și studiul funcțiilor.');
+insert into cursuri values (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematica - nivel de liceu'), 'Geometrie Analitica', 'Puncte, drepte si vectori in plan');
+insert into cursuri values (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Matematica - nivel de facultate'), 'Algebra Liniara', 'Vectori, matrice și sisteme liniare.');
+insert into cursuri values (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatica - nivel de facultate'), 'Programare Orientata pe Obiecte', 'Concepte OOP în C++');
+insert into cursuri values (seq_platforma.NEXTVAL, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatica - nivel de facultate'), 'Teoria grafurilor', 'Algoritmi avansati pentru grafuri și arbori.');
+insert into cursuri values(seq_platforma.nextval, (SELECT ID_Domeniu FROM DOMENII WHERE Nume='Informatica - nivel de facultate'), 'Baze de date', 'Concepte elementare de baze de date și SQL.');
 
 
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), 'Derivata unei funcții', 'Definiția derivatei și reguli de calcul.');
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), 'Clase și Obiecte', 'Instanțiere și constructori în OOP.');
-INSERT INTO LECTII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Parcurgerea BFS și DFS', 'Teorie grafuri și cozi.');
-
-
-
-INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Derivata unei funcții'), 'Calculează derivata lui x^2', 'Ușor', '2x');
-INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Clase și Obiecte'), 'Scrie o clasă Masina în C++', 'Mediu', 'class Masina { ... };');
-INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Parcurgerea BFS și DFS'), 'Găsește drumul minim în graf', 'Greu', 'Se aplică algoritmul Dijkstra.');
-INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Principiile mecanicii'), 'Află accelerația corpului', 'Mediu', 'a = F/m');
-INSERT INTO EXERCITII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Luceafărul - Analiză'), 'Comentează strofa a doua', 'Mediu', 'Text argumentativ...');
-
-
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), 'Test Analiză Cap. 1', 'Capitol');
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), 'Simulare Info OOP', 'Bacalaureat');
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Test Teorie Grafuri', 'Examen Facultate');
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Fizică Mecanică'), 'Test Dinamică', 'Capitol');
-INSERT INTO TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Eseu Bacalaureat'), 'Subiectul III Română', 'Bacalaureat');
+insert into lectii values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), 'Derivata unei funcții', 'Definitia derivatei și reguli de calcul.');
+insert into lectii values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), 'Puncte de extrem', 'Identificarea si clasificarea punctelor de extrem ale unei funcții.');
+insert into lectii values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientata pe Obiecte'), 'Clase si Obiecte', 'Instantiere si constructori în OOP.');
+insert into lectii values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Parcurgerea BFS si DFS', 'Introducere în algoritmii de parcurgere a grafurilor folosind cozi și stive.');
+insert into lectii values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Baze de date'), 'join, left join, right join', 'Concepte de baza pentru combinarea tabelelor în SQL');
 
 
 
-
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Fizică Mecanică'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Grafuri și Arbori'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Eseu Bacalaureat'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Fizică Mecanică'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Grafuri și Arbori'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientată pe Obiecte'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiză Matematică Clasa a XI-a'), SYSDATE);
-INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Eseu Bacalaureat'), SYSDATE);
+insert into exercitii values (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Derivata unei funcții'), 'Calculeaza derivata lui x^2', 'Ușor', '2x');
+insert into exercitii values (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Clase si Obiecte'), 'Scrie o clasa Masina în C++', 'Mediu', 'class Masina { ... };');
+insert into exercitii values (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Parcurgerea BFS si DFS'), 'Gaseste drumul minim în graful dat', 'Greu', 'DFS');
+insert into exercitii values (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='Puncte de extrem'), 'Gaseste punctele de extrem ale funcției f(x) = x^3 - 3x', 'Mediu', 'df/dx = 3x^2 - 3 = 0 => x = -1, 1');
+insert into exercitii values (seq_platforma.NEXTVAL, (SELECT ID_Lectie FROM LECTII WHERE Titlu='join, left join, right join'), 'afisati numele studentilor care au luat punctaj maxim la concurs', 'Mediu', 'SELECT nume FROM utilizatori u JOIN rezultate_teste r ON u.id_utilizator = r.id_utilizator WHERE r.scorfinal = 100');
 
 
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Analiză Cap. 1'), 85.50, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Dinamică'), 92.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Admitere UBB Info'), 78.50, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Subiectul III Română'), 95.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Simulare Info OOP'), 88.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Dinamică'), 65.50, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Admitere UBB Info'), 99.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Simulare Info OOP'), 96.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Analiză Cap. 1'), 75.00, SYSDATE);
-INSERT INTO REZULTATE_TESTE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Subiectul III Română'), 82.50, SYSDATE);
+insert into teste values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), 'Test Analiza limite', 'Capitol');
+insert into teste values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientata pe Obiecte'), 'Examen OOP', 'Examen Facultate');
+insert into teste values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), 'Test Teorie Grafuri', 'Examen Facultate');
+insert into teste values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Baze de date'), 'Examen final Baze de date', 'Examen Facultate');
+insert into teste values (seq_platforma.NEXTVAL, (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), 'Test Analiza derivate', 'Capitol');
 
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), SYSDATE);
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), SYSDATE);
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientata pe Obiecte'), SYSDATE);
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Teoria grafurilor'), SYSDATE);
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Programare Orientata pe Obiecte'), SYSDATE);
+INSERT INTO CURSURI_SALVATE VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Curs FROM CURSURI WHERE Titlu='Analiza Matematica Clasa a XI-a'), SYSDATE);
 
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP + INTERVAL '1' DAY, 150.00, 'InAsteptare');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP - INTERVAL '2' DAY, 150.00, 'Finalizata');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP + INTERVAL '3' DAY, 120.00, 'InAsteptare');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP - INTERVAL '1' DAY, 120.00, 'Finalizata');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP + INTERVAL '5' DAY, 120.00, 'InAsteptare');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP + INTERVAL '2' DAY, 150.00, 'InAsteptare');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP - INTERVAL '5' DAY, 150.00, 'Finalizata');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@email.com'), SYSTIMESTAMP + INTERVAL '4' DAY, 150.00, 'InAsteptare');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP - INTERVAL '10' DAY, 120.00, 'Finalizata');
-INSERT INTO CONSULTATII VALUES (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@email.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@email.com'), SYSTIMESTAMP + INTERVAL '7' DAY, 120.00, 'InAsteptare');
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Analiza limite'), 85.50, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Analiza derivate'), 76.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Examen final Baze de date'), 60.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Examen OOP'), 56.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Examen OOP'), 88.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Examen final Baze de date'), 92.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Teorie Grafuri'), 70.00, SYSDATE);
+insert into rezultate_teste values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Test FROM TESTE WHERE Titlu='Test Teorie Grafuri'), 55.00, SYSDATE);
+
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@gmail.com'), SYSTIMESTAMP + INTERVAL '1' DAY, 150.00, 'InAsteptare');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@gmail.com'), SYSTIMESTAMP - INTERVAL '2' DAY, 150.00, 'Finalizata');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='ion@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP + INTERVAL '3' DAY, 120.00, 'InAsteptare');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP - INTERVAL '1' DAY, 120.00, 'Finalizata');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP + INTERVAL '5' DAY, 120.00, 'InAsteptare');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='maria@yahoo.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@gmail.com'), SYSTIMESTAMP + INTERVAL '2' DAY, 150.00, 'InAsteptare');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@gmail.com'), SYSTIMESTAMP - INTERVAL '5' DAY, 150.00, 'Finalizata');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='vasile@gmail.com'), SYSTIMESTAMP + INTERVAL '4' DAY, 150.00, 'InAsteptare');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP - INTERVAL '10' DAY, 120.00, 'Finalizata');
+insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP + INTERVAL '7' DAY, 120.00, 'InAsteptare');
 
 
 
