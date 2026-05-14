@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <%- include('../fragmente/head') %>
-    <title><%= titlu %> - Școala pentru toți</title>
+    <title><%= locals.titlu ? titlu : 'Eroare' %> - Școala pentru toți</title>
     
     <style>
 
@@ -73,10 +73,9 @@
     <main>
         <div id="grid-pagina">
             <section id="sectiune-eroare">
-                <h2><i class="fa-solid fa-triangle-exclamation"></i> <%= titlu %></h2>
-                <p><%= text %></p>
-                
-                <img src="<%= imagine %>" alt="Imagine reprezentativă eroare" class="imagine-eroare">
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> <%= locals.titlu ? titlu : 'Eroare' %></h2>
+                    <p><%= locals.text ? text : 'A apărut o eroare neașteptată pe server.' %></p>
+                        <img src="<%= locals.imagine ? imagine : '/Resurse/imagini/erori/default.png' %>" alt="Imagine reprezentativă eroare" class="imagine-eroare">
                 
                 <a href="/" class="buton-intoarcere">
                     <i class="fa-solid fa-house"></i> Întoarce-te la pagina principală

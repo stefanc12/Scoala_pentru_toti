@@ -5,31 +5,19 @@
     <title>Acasă - Școala pentru toți</title>
     
     <style>
-       
         .hero-banner {
             background: linear-gradient(135deg, #2b618a 0%, #4a90e2 100%);
             color: white;
             padding: 60px 20px;
-            border-radius: 15px;
+            border-radius: var(--raza-border);
             text-align: center;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
             margin-bottom: 40px;
         }
-
-        .hero-banner h2 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero-banner p {
-            font-size: 1.2em;
-            max-width: 700px;
-            margin: 0 auto 25px auto;
-            line-height: 1.6;
-        }
-
-        .buton-primar {
+        .hero-banner h2 { font-size: 2.5em; margin-bottom: 15px; }
+        .hero-banner p { font-size: 1.2em; max-width: 700px; margin: 0 auto 25px auto; }
+        
+        .buton-primar-vechi {
             background-color: #ff9800;
             color: white;
             padding: 12px 30px;
@@ -40,106 +28,34 @@
             transition: all 0.3s ease;
             display: inline-block;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            border: none;
         }
-
-        .buton-primar:hover {
+        .buton-primar-vechi:hover {
             background-color: #e68a00;
             transform: translateY(-3px);
             color: white;
         }
-
-
-        .sectiuni-principale {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; /* Spațiere grid cerută la Etapa 2 */
-            margin-bottom: 40px;
-        }
-
-
-        .card-info {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card-info:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-        }
-
-        .card-info h3 {
-            color: #2b618a;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-info i {
-            color: #ff9800;
-        }
-
-
-        .badge-nou {
-            background-color: #d9534f;
-            color: white;
-            font-size: 0.8em;
-            padding: 3px 8px;
-            border-radius: 10px;
-            vertical-align: middle;
-            margin-left: 10px;
-        }
-
     </style>
 </head>
 <body>
     <%- include('../fragmente/header') %>
 
-    <main>
-        <div id="grid-pagina" style="padding: 20px;">
-            
-            <section class="hero-banner" id="welcome">
-                <h2>Bun venit la Școala pentru toți!</h2>
-                <p>O platformă educațională interactivă unde învățarea devine o plăcere. Descoperă cursuri, rezolvă exerciții și urmărește-ți progresul într-un mediu adaptat nevoilor tale.</p>
-                <a href="/cursuri" class="buton-primar"><i class="fa-solid fa-rocket"></i> Începe să înveți acum</a>
+    <main class="container mt-4">
+        <section class="hero-banner" id="welcome">
+            <h2>Învață inteligent, nu din greu!</h2>
+            <p>Platforma ta preferată pentru pregătirea examenelor naționale și concursurilor școlare.</p>
+            <a href="/cursuri" class="buton-primar-vechi"><i class="fa-solid fa-rocket"></i> Începe să înveți acum</a>
+        </section>
+
+        <div id="grid-pagina">
+            <section class="card-info" id="prezentare">
+                <h2>Cine suntem noi?</h2>
+                <section>
+                    <h3>Misiunea Noastră</h3>
+                    <p>Suntem o echipă dedicată care crede în <b>educația gratuită</b>. Folosim metode de <i>active learning</i>.</p>
+                    <blockquote>"Esența educației este libertatea."</blockquote>
+                </section>
             </section>
-
-            <div class="sectiuni-principale">
-                
-                <section class="card-info">
-                    <h3><i class="fa-solid fa-users"></i> Cine suntem noi?</h3>
-                    <p>Suntem o echipă dedicată de profesori și dezvoltatori care cred că educația de calitate trebuie să fie accesibilă absolut tuturor.</p>
-                    <p>Folosim metode de <strong>învățare activă</strong> și oferim suport constant cursanților noștri. Peste <mark>5000 de elevi</mark> ne-au trecut pragul virtual.</p>
-                </section>
-
-                <section class="card-info" id="noutati">
-                    <h3><i class="fa-solid fa-newspaper"></i> Ultimele Noutăți <span class="badge-nou">Nou</span></h3>
-                    <ul>
-                        <li><strong>10 Mai 2026:</strong> Am lansat modulul de pregătire intensivă pentru Bacalaureat.</li>
-                        <li><strong>05 Mai 2026:</strong> S-a adăugat o secțiune nouă de <a href="/exercitii">Exerciții interactive</a> la Matematică.</li>
-                        <li><strong>28 Apr 2026:</strong> Actualizarea platformei pentru dispozitive mobile.</li>
-                    </ul>
-                </section>
-
-                <section class="card-info">
-                    <h3><i class="fa-solid fa-lightbulb"></i> De ce să ne alegi?</h3>
-                    <details style="margin-bottom: 10px; cursor: pointer;">
-                        <summary><strong>Flexibilitate totală</strong></summary>
-                        <p style="margin-top: 5px; color: #555;">Înveți în ritmul tău, la orice oră, de pe orice dispozitiv (telefon, tabletă sau laptop).</p>
-                    </details>
-                    <details style="cursor: pointer;">
-                        <summary><strong>Materiale structurate</strong></summary>
-                        <p style="margin-top: 5px; color: #555;">Cursurile noastre sunt create conform programei școlare actuale.</p>
-                    </details>
-                </section>
-
-            </div>
 
         </div>
     </main>

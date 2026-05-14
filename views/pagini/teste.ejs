@@ -6,33 +6,107 @@
 </head>
 <body>
     <%- include('../fragmente/header') %>
-    <main>
+    
+    <main class="container mt-4 mb-5">
         <div id="grid-pagina">
-            <section>
-                <h2>Calendar Testări și Tutoriale</h2>
-                
-                <ul>
-                    <li>
-                        <time datetime="2026-05-15T09:00">15 Mai, ora 09:00</time> - 
-                        <b>Simulare Bacalaureat</b>: Testare la nivel național.
-                    </li>
-                    <li>
-                        <time datetime="2026-06-01T10:00">1 Iunie, ora 10:00</time> - 
-                        <b>Concurs Informatică</b>: "Codul de Aur".
-                    </li>
-                </ul>
-
-                <br>
-                <h3>Tutoriale Video</h3>
-                <div style="margin-bottom: 10px;">
-                    <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="video_iframe">Tutorial 1</a> | 
-                    <a href="https://www.youtube.com/embed/jNQXAC9IVRw" target="video_iframe">Tutorial 2</a> |
-                    <a href="https://www.youtube.com/embed/V6XIn5676-A" target="video_iframe">Revenire la video inițial</a>
+            
+            <section class="card-info" id="simulari">
+                <h2 class="mb-4 text-primary"><i class="fa-solid fa-calendar-check"></i> Program Simulări 2026</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle table-hover">
+                        <caption>Tabel 1: Calendarul sesiunilor de antrenament oficiale</caption>
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Categorie</th>
+                                <th>Disciplina</th>
+                                <th>Data</th>
+                                <th>Durată</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" class="fw-bold bg-light">Bacalaureat</td>
+                                <td>Matematică M1</td>
+                                <td>20 Mai</td>
+                                <td>3 ore</td>
+                            </tr>
+                            <tr>
+                                <td>Informatică</td>
+                                <td>22 Mai</td>
+                                <td>3 ore</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold bg-light">Admitere FMI</td>
+                                <td>Probă mixtă</td>
+                                <td>15 Iunie</td>
+                                <td>4 ore</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="table-warning fw-bold">
+                            <tr>
+                                <td colspan="3" class="text-end pe-3">Total ore de simulare luna Mai:</td>
+                                <td>6 ore</td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                <iframe name="video_iframe" width="560" height="315" src="https://www.youtube.com/embed/V6XIn5676-A" frameborder="0" allowfullscreen></iframe>
             </section>
+
+            <section class="card-info mt-4" id="teste-antrenament">
+                <h2 class="mb-4 text-primary"><i class="fa-solid fa-laptop-code"></i> Teste de Antrenament Disponibile</h2>
+                
+                <div class="row g-4">
+                    <% if (locals.testeDB && testeDB.length > 0) { %>
+                        <% testeDB.forEach(function(test) { %>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card h-100 border-primary shadow-sm" style="transition: transform 0.2s;">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="card-title mb-0 fs-6"><%= test.NUMETEST %></h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text mb-1 text-muted small"><strong>Curs:</strong> <%= test.NUMECURS %></p>
+                                        <p class="card-text">
+                                            <strong>Tip:</strong> 
+                                            <span class="badge <%= test.TIPTEST === 'Capitol' ? 'bg-success' : 'bg-danger' %>">
+                                                <%= test.TIPTEST %>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0 pb-3 text-center">
+                                        <a href="#" class="btn btn-outline-primary btn-sm w-100">Începe Testul <i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <i class="fa-solid fa-circle-info"></i> Nu există teste de antrenament disponibile momentan.
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+
+            <section class="card-info mt-4" id="tutoriale-video">
+                <h2 class="text-primary mb-3"><i class="fa-brands fa-youtube"></i> Tutoriale Video Recomandate</h2>
+                
+                <div class="container-iframe">
+                    <div class="taburi-iframe mb-3">
+                        <a href="https://www.youtube.com/embed/nWadI0_u6QU" target="video_iframe" class="btn btn-secondary btn-sm">Teorema Limitei Centrale</a>
+                        
+                        <a href="https://www.youtube.com/embed/jNQXAC9IVRw" target="video_iframe" class="btn btn-secondary btn-sm">Tutorial 2</a>
+                        
+                        <a href="https://www.youtube.com/embed/nWadI0_u6QU" target="video_iframe" class="btn btn-outline-danger btn-sm">Revenire la video inițial</a>
+                    </div>
+                    
+                    <iframe name="video_iframe" style="width: 100%; max-width: 800px; aspect-ratio: 16/9; border-radius: var(--raza-border); border: 1px solid var(--culoare-border);" src="https://www.youtube.com/embed/nWadI0_u6QU" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
+
         </div>
     </main>
+    
     <%- include('../fragmente/footer') %>
 </body>
 </html>

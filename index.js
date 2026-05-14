@@ -1,9 +1,130 @@
 const express = require('express');
 const oracledb= require('oracledb');
+oracledb.fetchAsString = [oracledb.CLOB];
+
 const fs = require('fs');
 const path = require('path');
-
 const session = require('express-session');
+const sass = require('sass');
+
+
+global.folderScss = path.join(__dirname, 'Resurse', 'SCSS');
+global.folderCss = path.join(__dirname, 'Resurse', 'CSS');
+const folderBackup = path.join(__dirname, 'backup', 'resurse', 'css');
+
+const foldereNecesare = [global.folderScss, global.folderCss, folderBackup];
+foldereNecesare.forEach(folder => {
+    if (!fs.existsSync(folder)) {
+        fs.mkdirSync(folder, { recursive: true });
+        console.log(`[Init] Am creat automat folderul: ${folder}`);
+    }
+});
+
+function compileazaScss(caleScss, caleCss) {
+
+    if (!caleCss) {
+        let numeFisier = path.basename(caleScss, '.scss') + '.css';
+        caleCss = path.join(global.folderCss, numeFisier);
+    } else {
+
+        if (!path.isAbsolute(caleScss)) caleScss = path.join(global.folderScss, caleScss);
+        if (!path.isAbsolute(caleCss)) caleCss = path.join(global.folderCss, caleCss);
+    }
+
+
+    if (fs.existsSync(caleCss)) {
+        let numeFisierCss = path.basename(caleCss);
+
+        let timp = new Date().getTime(); 
+        let caleBackup = path.join(folderBackup, `${timp}_${numeFisierCss}`);
+        
+        try {
+            fs.copyFileSync(caleCss, caleBackup);
+            console.log(`[Backup] Fișier salvat: ${caleBackup}`);
+        } catch (err) {
+            console.error(`[Eroare Backup] Nu s-a putut salva backup-ul pentru ${caleCss}:`, err);
+        }
+    }
+
+    try {
+        const rezultat = sass.compile(caleScss);
+        fs.writeFileSync(caleCss, rezultat.css);
+        console.log(`[SCSS] Compilare cu succes: ${caleScss} -> ${caleCss}`);
+    } catch (err) {
+        console.error(`[Eroare Compilare SCSS] Problema in fișierul ${caleScss}:`, err.message);
+    }
+}
+
+
+function compilareInitiala() {
+    console.log('[SCSS] Pornesc compilarea inițială...');
+    fs.readdir(global.folderScss, (err, fisiere) => {
+        if (err) {
+            console.error("[SCSS] Eroare citire folder SCSS:", err);
+            return;
+        }
+        fisiere.forEach(fisier => {
+            if (path.extname(fisier) === '.scss') {
+                compileazaScss(path.join(global.folderScss, fisier));
+            }
+        });
+    });
+}
+compilareInitiala();
+
+
+fs.watch(global.folderScss, (eventType, filename) => {
+    if (filename && path.extname(filename) === '.scss') {
+        console.log(`[SCSS Watch] S-a detectat o modificare (${eventType}) la: ${filename}`);
+        let caleAbsoluta = path.join(global.folderScss, filename);
+        if(fs.existsSync(caleAbsoluta)){
+            compileazaScss(caleAbsoluta);
+        }
+    }
+});
+
+
+const TIMP_EXPIRARE_MINUTE = 15; 
+
+function curataBackup() {
+    if (!fs.existsSync(folderBackup)) return;
+    
+    fs.readdir(folderBackup, (err, fisiere) => {
+        if (err) {
+            console.error("[Backup Cleanup] Eroare la citirea folderului:", err);
+            return;
+        }
+
+        const acum = new Date().getTime();
+        const timpExpirareMs = TIMP_EXPIRARE_MINUTE * 60 * 1000;
+
+        fisiere.forEach(fisier => {
+            let caleFisier = path.join(folderBackup, fisier);
+            
+
+            fs.stat(caleFisier, (err, stats) => {
+                if (err) return;
+
+                let timpFisier = stats.mtime.getTime();
+
+
+                if (acum - timpFisier > timpExpirareMs) {
+                    fs.unlink(caleFisier, err => {
+                        if (!err) {
+                            console.log(`[Backup Cleanup] Am șters fișierul expirat: ${fisier}`);
+                        }
+                    });
+                }
+            });
+        });
+    });
+}
+
+
+setInterval(curataBackup, 15 * 60 * 1000);
+
+
+curataBackup();
 
 const app = express();
 
@@ -145,6 +266,8 @@ app.post('/inregistrare', async (req, res) => {
     }
 });
 
+
+
 app.post('/logare', async (req, res) => {
     let connection;
     try {
@@ -169,7 +292,51 @@ app.post('/logare', async (req, res) => {
     }
 });
 
-app.get('/cont', async (req, res) => {
+app.get('/exercitii', async (req, res) => {
+    let connection;
+    try {
+        connection = await oracledb.getConnection(dbConfig);
+        const rezultat = await connection.execute(
+            "SELECT * FROM EXERCITII WHERE Status = 'Validat'", 
+            [], 
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+        res.render('pagini/exercitii', { exercitii: rezultat.rows });
+    } catch (err) {
+        console.error(err);
+        res.render('pagini/eroare', { titlu: 'Eroare', text: 'Nu am putut încărca exercițiile.' });
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.post('/propune-exercitiu', async (req, res) => {
+    if (!req.session.utilizator || req.session.utilizator.ROL !== 'Profesor') {
+        return res.status(403).send("Doar profesorii pot propune exerciții.");
+    }
+
+    let connection;
+    try {
+        const { continut, dificultate, solutie } = req.body;
+        connection = await oracledb.getConnection(dbConfig);
+        
+        await connection.execute(
+            `INSERT INTO EXERCITII (ID_Exercitiu, ID_Lectie, Continut, NivelDificultate, Solutie, Status) 
+             VALUES (seq_platforma.NEXTVAL, 1, :continut, :dificultate, :solutie, 'InAsteptare')`,
+            { continut, dificultate, solutie },
+            { autoCommit: true }
+        );
+        
+        res.redirect('/exercitii?succes=propunere_trimisa');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Eroare la salvarea propunerii.");
+    } finally {
+        if (connection) await connection.close();
+    }
+});
+
+app.get('/cont', async (req, res) => { 
     if (!req.session.utilizator) {
         return res.render('pagini/cont');
     }
@@ -179,7 +346,7 @@ app.get('/cont', async (req, res) => {
         connection = await oracledb.getConnection(dbConfig);
         const userId = req.session.utilizator.ID_UTILIZATOR;
 
-
+        // 1. Aducem cursurile salvate (pentru toată lumea)
         const cursuriSalvate = await connection.execute(
             `SELECT c.TITLU, c.ID_CURS FROM CURSURI_SALVATE cs 
              JOIN CURSURI c ON cs.ID_CURS = c.ID_CURS 
@@ -188,11 +355,10 @@ app.get('/cont', async (req, res) => {
             { outFormat: oracledb.OUT_FORMAT_OBJECT }
         );
 
-
         let rezultateTeste = [];
         if (req.session.utilizator.ROL === 'Student') {
             const result = await connection.execute(
-                `SELECT t.TITLU, rt.SCORFINAL, TO_CHAR(rt.TRIMISLA, 'DD-MM-YYYY') as DATA 
+                `SELECT t.TITLU, t.TIPTEST, rt.SCORFINAL, TO_CHAR(rt.TRIMISLA, 'DD-MM-YYYY') as DATA 
                  FROM REZULTATE_TESTE rt 
                  JOIN TESTE t ON rt.ID_TEST = t.ID_TEST 
                  WHERE rt.ID_UTILIZATOR = :id`,
@@ -201,7 +367,6 @@ app.get('/cont', async (req, res) => {
             );
             rezultateTeste = result.rows;
         }
-
 
         res.render('pagini/cont', {
             utilizator: req.session.utilizator,
@@ -220,6 +385,27 @@ app.get('/cont', async (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
+});
+
+app.get('/teste', async (req, res) => {
+    let connection;
+    try {
+        connection = await oracledb.getConnection(dbConfig);
+        const result = await connection.execute(
+            `SELECT t.ID_Test, t.Titlu as NumeTest, t.TipTest, c.Titlu as NumeCurs 
+             FROM TESTE t 
+             JOIN CURSURI c ON t.ID_Curs = c.ID_Curs`, 
+            [], 
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+        
+        res.render('pagini/teste', { testeDB: result.rows, caleCurenta: req.path });
+    } catch (err) {
+        console.error("Eroare la aducerea testelor:", err);
+        res.render('pagini/eroare', { titlu: 'Eroare Bază de date', text: 'Nu s-au putut încărca testele.' });
+    } finally {
+        if (connection) await connection.close();
+    }
 });
 
 app.get('/cursuri', async (req, res) => {

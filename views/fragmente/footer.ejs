@@ -1,10 +1,25 @@
-<footer>
-    <address>
-        Contactați-ne la: <a href="mailto:stefan.cornaciu05@gmail.com">stefan.cornaciu05@gmail.com</a><br>
-        Telefon: <a href="tel:+40766322167">0766 322 167</a>
-    </address>
-    <p><small>&copy; <time datetime="2026">2026</time> Cornaciu Adrian Ștefan - Toate drepturile rezervate.</small></p>
+<footer class="mt-5" style="text-align: center; padding: 30px 15px;">
     
-    <p><small>IP utilizator: <%= locals.ip %></small></p>
+    <div id="link-top" style="margin-bottom: 20px;">
+        <a href="#" class="text-decoration-none fw-bold" style="color: var(--culoare-primara);">
+            <div id="triunghi" style="display: inline-block;"></div>
+            Sari sus
+        </a>
+    </div>
+
+    <address style="margin-bottom: 20px; line-height: 1.8;">
+        <p style="margin: 5px 0;"><i class="fa-solid fa-envelope"></i> E-mail: <a href="mailto:contact@scoalapentrutoti.ro">contact@scoalapentrutoti.ro</a></p>
+        <p style="margin: 5px 0;"><i class="fa-solid fa-location-dot"></i> Adresa: <a href="https://maps.app.goo.gl/K8f8W4P6Lw6z9z7A7" target="_blank">Strada Academiei Nr. 14, București</a></p>
+        <p style="margin: 5px 0;"><i class="fa-solid fa-phone"></i> Tel: <a href="tel:+40766322167">0766 322 167</a></p>
+        <p style="margin: 5px 0;"><i class="fa-brands fa-whatsapp text-success"></i> <a href="https://wa.me/40766322167" target="_blank">WhatsApp Chat</a></p>
+    </address>
+
+    <p style="margin: 5px 0; color: var(--culoare-text);">
+        <small>© <time datetime="2026-05-15">15 Mai 2026</time> Cornaciu Adrian Ștefan. Toate drepturile rezervate.</small>
+    </p>
+    <p style="margin: 5px 0; color: var(--culoare-text);">
+        <small>IP: <%= locals.ip %></small>
+    </p>
 </footer>
+
 <script src="/Resurse/JS/tema.js"></script>

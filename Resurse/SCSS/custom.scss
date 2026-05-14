@@ -1,0 +1,45 @@
+
+$primary: #2b5c8f; 
+$secondary: #f4a261; 
+
+
+$body-color: #333333;
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 800px, 
+  lg: 1100px, 
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+$border-radius: 12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 16px;
+
+
+$font-family-base: 'Roboto', sans-serif;
+
+
+$h1-font-size: 3rem;
+$h2-font-size: 2.5rem;
+$h3-font-size: 2rem;
+
+
+$danger: #e63946; 
+
+$form-range-thumb-width: 1.5rem; 
+$form-range-thumb-height: 1.5rem;
+$form-range-thumb-bg: $secondary;
+$form-range-track-bg: #e0e0e0;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+
+header h1 {
+    font-size: 2.2em !important;
+}

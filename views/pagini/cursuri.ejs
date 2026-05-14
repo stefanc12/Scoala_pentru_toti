@@ -8,10 +8,63 @@
     <%- include('../fragmente/header') %>
     <main>
         <div id="grid-pagina">
+            <section class="card-info mb-5">
+                <h2 class="text-primary mb-4"><i class="fa-solid fa-calendar-days"></i> Orarul Consultatțiilor și Cursurilor Live</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle table-hover">
+                        <caption>Tabel 1: Programul săptămânal al sesiunilor interactive cu profesorii</caption>
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Curs</th>
+                                <th>Ziua</th>
+                                <th>Interval Orar</th>
+                                <th>Profesor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" class="fw-bold">Matematică (Liceu)</td>
+                                <td>Luni</td>
+                                <td>14:00 - 16:00</td>
+                                <td>Dumitru Vasile</td>
+                            </tr>
+                            <tr>
+                                <td>Miercuri</td>
+                                <td>10:00 - 12:00</td>
+                                <td>Stan Andreea</td>
+                            </tr>
+                            <tr>
+                                <td>Programare OOP</td>
+                                <td>Marți</td>
+                                <td>16:00 - 18:00</td>
+                                <td>Ionescu Maria</td>
+                            </tr>
+                            <tr>
+                                <td>Baze de Date</td>
+                                <td>Joi</td>
+                                <td>12:00 - 14:00</td>
+                                <td>Popescu Ion</td>
+                            </tr>
+                            <tr>
+                                <td>Teoria Grafurilor</td>
+                                <td>Vineri</td>
+                                <td>18:00 - 20:00</td>
+                                <td>Marin George</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="table-light italic">
+                            <tr>
+                                <td colspan="4">Orele pot suferi modificări în funcție de sărbătorile legale.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
             <section>
                 <h2>Oferta noastră de cursuri</h2>
                 <p>Alege pachetul care ți se potrivește. Folosim un sistem de <dfn title="Metodă de predare bazată pe practică">învățare activă</dfn> pentru rezultate garantate.</p>
-
+                
                 <section id="gestiune-cursuri">
 
                     <div class="container-cursuri-db" style="display: grid; gap: 20px;">

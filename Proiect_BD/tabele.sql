@@ -168,6 +168,6 @@ insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FRO
 insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP - INTERVAL '10' DAY, 120.00, 'Finalizata');
 insert into CONSULTATII values (seq_platforma.NEXTVAL, (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='george@gmail.com'), (SELECT ID_Utilizator FROM UTILIZATORI WHERE Email='andreea@gmail.com'), SYSTIMESTAMP + INTERVAL '7' DAY, 120.00, 'InAsteptare');
 
-
-
+ALTER TABLE EXERCITII ADD (Status VARCHAR2(20) DEFAULT 'InAsteptare' CHECK (Status IN ('InAsteptare', 'Validat')));
+UPDATE EXERCITII SET Status = 'Validat';
 COMMIT;

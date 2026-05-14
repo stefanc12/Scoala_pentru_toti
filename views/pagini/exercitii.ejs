@@ -6,26 +6,138 @@
 </head>
 <body>
     <%- include('../fragmente/header') %>
+    
     <main>
-        <div id="grid-pagina">
-            <section>
-                <h2>Exerciții Practice</h2>
-                <p><strong>Atenție!</strong> Rezolvarea exercițiilor fără a consulta teoria este <em>contraproductivă</em>.</p>
-                
-                <details>
-                    <summary>Exercițiul 1: Cum calculăm aria unui triunghi?</summary>
-                    <p>Formula este <abbr title="Baza ori Înălțimea supra 2">B*h/2</abbr>. Încearcă să aplici pentru b=10 și h=5.</p>
-                </details>
 
-                <details>
-                    <summary>Exercițiul 2: Ce este un algoritm de sortare?</summary>
-                    <p><q>Un algoritm este o succesiune de pași finiți pentru rezolvarea unei probleme.</q> spune manualul de clasa a IX-a.</p>
-                </details>
+        <% if (locals.utilizator && utilizator.ROL === 'Profesor') { %>
+            <div class="container mb-5">
+                <div class="card shadow-sm border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4"><i class="fa-solid fa-pen-to-square"></i> Propune un exercițiu</h5>
+                        
+                        <form id="form-propunere" action="/propune-exercitiu" method="POST">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="continut" id="cerinta-propusa" style="height: 100px" required></textarea>
+                                <label for="cerinta-propusa">Scrie aici enunțul exercițiului...</label>
+                            </div>
 
-                <p>Text corectat: <s>Exercițiile sunt opționale.</s> <ins>Exercițiile sunt obligatorii pentru progres.</ins></p>
-            </section>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nivel Dificultate</label>
+                                    <select class="form-select" name="dificultate">
+                                        <option value="Ușor">Ușor</option>
+                                        <option value="Mediu" selected>Mediu</option>
+                                        <option value="Greu">Greu</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Soluție (pe scurt)</label>
+                                    <input type="text" class="form-control" name="solutie" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Trimite spre Validare</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% } else if (!locals.utilizator) { %>
+            <div class="container mb-5">
+                <div class="alert alert-secondary">
+                    <i class="fa-solid fa-circle-info"></i> Trebuie să fii logat ca <strong>Profesor</strong> pentru a propune exerciții noi.
+                </div>
+            </div>
+        <% } %>
+        <div class="container mt-4 mb-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3"><i class="fa-solid fa-sliders"></i> Filtrare Exerciții</h5>
+                    
+                    <div class="row g-3 align-items-end">
+                        <div class="col-12 col-md-4">
+                            <label for="cautare-text" class="form-label">Caută în cerință</label>
+                            <input type="text" class="form-control" id="cautare-text" placeholder="ex: derivata, OOP, graf...">
+                        </div>
+
+                        <div class="col-12 col-md-5">
+                            <label class="form-label d-block">Nivel Dificultate</label>
+                            <div class="btn-group w-100" role="group" aria-label="Filtrare Dificultate">
+                                <input type="checkbox" class="btn-check" id="dif-usor" value="Ușor" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="dif-usor">Ușor</label>
+
+                                <input type="checkbox" class="btn-check" id="dif-mediu" value="Mediu" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="dif-mediu">Mediu</label>
+
+                                <input type="checkbox" class="btn-check" id="dif-greu" value="Greu" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="dif-greu">Greu</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-3 d-flex gap-2">
+                            <button id="btn-aplica-filtre" class="btn btn-primary flex-grow-1">
+                                <i class="fa-solid fa-filter"></i> <span class="d-none d-xl-inline">Aplică</span>
+                            </button>
+                            <button id="btn-reset-filtre" class="btn btn-outline-danger flex-grow-1">
+                                <i class="fa-solid fa-xmark"></i> <span class="d-none d-xl-inline">Reset</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <div class="row g-3 align-items-center">
+                         <div class="col-auto">
+                            <strong>Sortează:</strong>
+                         </div>
+                         <div class="col-auto">
+                            <select id="sortare-criteriu" class="form-select form-select-sm">
+                                <option value="implicit">Implicit (Adăugare)</option>
+                                <option value="dificultate-cresc">Dificultate (Ușor -> Greu)</option>
+                                <option value="dificultate-desc">Dificultate (Greu -> Ușor)</option>
+                            </select>
+                         </div>
+                         <div class="col-auto">
+                             <button id="btn-sortare" class="btn btn-secondary btn-sm">
+                                 <i class="fa-solid fa-sort"></i> Sortează
+                             </button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="container-exercitii" class="container">
+            <div class="row">
+                <% if (locals.exercitii && exercitii.length > 0) { %>
+                    <% exercitii.forEach(function(ex) { %>
+                        <div class="col-12 mb-3 exercitiu-item" data-dificultate="<%= ex.NIVELDIFICULTATE || ex.nivelDificultate %>">
+                            <div class="card h-100 border-secondary">
+                                <div class="card-body">
+                                    <span class="badge bg-primary mb-2"><%= ex.NIVELDIFICULTATE || ex.nivelDificultate %></span>
+                                    <p class="card-text cerinta-text fw-bold"><%= ex.CONTINUT || ex.continut %></p>
+                                    
+                                    <details class="mt-3 text-muted">
+                                        <summary style="cursor: pointer;">Afișează soluția</summary>
+                                        <div class="mt-2 p-2 rounded bg-light text-dark" style="border: 1px dashed var(--culoare-border);">
+                                            <code><%= ex.SOLUTIE || ex.solutie %></code>
+                                        </div>
+                                    </details>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <div class="col-12">
+                        <div class="alert alert-info" role="alert">
+                            Nu există exerciții disponibile în baza de date momentan.
+                        </div>
+                    </div>
+                <% } %>
+            </div>
         </div>
     </main>
+
     <%- include('../fragmente/footer') %>
+    <script src="/Resurse/JS/filtrare_exercitii.js"></script>
 </body>
 </html>

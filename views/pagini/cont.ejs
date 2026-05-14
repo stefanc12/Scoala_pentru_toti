@@ -268,6 +268,45 @@
             <% } %>
 
         </div>
+        <% if (locals.utilizator && utilizator.ROL === 'Student') { %>
+            <div class="container mt-5 mb-5">
+                <div class="card shadow-sm border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fa-solid fa-graduation-cap"></i> Rezultatele Testelor Tale</h5>
+                    </div>
+                    <div class="card-body">
+                        <% if (locals.rezultateTeste && rezultateTeste.length > 0) { %>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered text-center tabel-transpus">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Test</th>
+                                            <th>Tip Evaluare</th>
+                                            <th>Scor Final</th>
+                                            <th>Data Trimiterii</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% rezultateTeste.forEach(function(rez) { %>
+                                            <tr>
+                                                <td class="fw-bold text-primary"><%= rez.TITLU %></td>
+                                                <td><span class="badge bg-secondary"><%= rez.TIPTEST %></span></td>
+                                                <td class="<%= rez.SCORFINAL >= 50 ? 'text-success' : 'text-danger' %> fw-bold">
+                                                    <%= rez.SCORFINAL %>%
+                                                </td>
+                                                <td><%= rez.DATA %></td>
+                                            </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <% } else { %>
+                            <div class="alert alert-info mb-0">Nu ai susținut niciun test până acum.</div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
     </main>
     <%- include('../fragmente/footer') %>
 

@@ -1,12 +1,9 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
 
 :root {
     --culoare-primara: #2b5c8f; 
     --culoare-secundara: #f4a261; 
     --culoare-text: #333333;
-
     --culoare-fundal: #f4f4f9; 
     --culoare-containere: #ffffff; 
     --culoare-border: #ddd; 
@@ -19,6 +16,17 @@
     --raza-border: 8px;
 }
 
+[data-theme="dark"] {
+    --culoare-primara: #427ebf; 
+    --culoare-secundara: #ffb77d; 
+    --culoare-text: #e0e0e0;
+    --culoare-fundal: #121212;
+    --culoare-containere: #1e1e1e;
+    --culoare-border: #444444;
+    --culoare-tabel-par: #2a2a2a;
+    --culoare-tabel-impar: #1e1e1e;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -27,58 +35,66 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
-    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0 var(--spatiere-laterala);
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s; /* Tranzitie lina pt Dark Mode */
 }
 
+/* --- Layout Grid Principal --- */
 #grid-pagina {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap-grid);
-    margin-top: var(--gap-grid );
+    margin-top: var(--gap-grid);
     padding-bottom: var(--gap-grid);
 }
 
-
-header, footer, section {
+/* --- Izolare Vizuala (Etapa 2) --- */
+header, footer, section.card-info, .hero-banner {
     background-color: var(--culoare-containere);
     padding: var(--padding-zone);
     border-radius: var(--raza-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    
+    border: 1px solid var(--culoare-border);
 }
 
 header {
     border-top: 5px solid var(--culoare-primara);
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: space-between; 
 }
 
 footer {
     border-bottom: 5px solid var(--culoare-primara);
-    text-align: center;
 }
 
-
+/* --- Elemente Media (Etapa 2) --- */
 img, video, iframe {
     max-width: 100%;
-    height: auto;
     width: 80%;
-    min-width: 250px;
+    min-width: 250px; /* Limita inferioară */
     display: block;
     margin: 10px auto;
     border-radius: var(--raza-border);
-
 }
 
 .fg-img img {
-    width: auto;
+    width: 100%;
     max-width: 150px;
+    min-width: 100px;
     margin: 0 auto;
 }
 
-nav ul {
+/* --- Navigare --- */
+nav {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.nav-principal {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -89,69 +105,49 @@ nav ul {
     border-radius: var(--raza-border);
 }
 
-nav ul li {
+.nav-principal > li {
     position: relative;
     padding: 10px 15px;
 }
 
-nav ul li a {
+.nav-principal a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-nav ul li a:hover {
+.nav-principal a:hover, .nav-principal a.activ {
     color: var(--culoare-secundara);
 }
 
-nav ul li a.activ {
-    color: var(--culoare-secundara); 
+.nav-principal a.activ {
     border-bottom: 3px solid var(--culoare-secundara); 
     padding-bottom: 5px; 
 }
 
-nav ul li ul {
+/* Sub-meniu Dropdown */
+.sub-nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     flex-direction: column;
     background-color: var(--culoare-primara);
-    min-width: 150px;
+    min-width: 180px;
+    border-radius: 0 0 var(--raza-border) var(--raza-border);
+    padding: 10px 0;
+    z-index: 1000;
 }
 
+.sub-nav li {
+    padding: 8px 15px;
+}
 
-nav ul li:hover ul {
+.nav-principal li:hover .sub-nav {
     display: flex;
 }
 
-
-#tab-orar {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-#tab-orar th, #tab-orar td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-#tab-orar th {
-    background-color: var(--culoare-primara);
-    color: white;
-}
-
-
-#tab-orar tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-#tab-orar tbody tr:nth-child(odd) {
-    background-color: white;
-}
-
-
+/* --- Taburi Iframe --- */
 .container-iframe {
     display: flex;
     flex-direction: column;
@@ -166,27 +162,33 @@ nav ul li:hover ul {
     flex-wrap: wrap;
 }
 
-.taburi-iframe a {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: var(--culoare-secundara);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    border: 2px solid transparent;
+/* --- Meniu Hamburger --- */
+#hamburger-menu {
+    display: none;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
 }
 
-.taburi-iframe a:hover {
-    background-color: white;
-    color: var(--culoare-secundara);
-    border-color: var(--culoare-secundara);
+#hamburger-menu span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: var(--culoare-primara);
+    border-radius: 3px;
+    left: 0;
 }
 
+#hamburger-menu span:nth-child(1) { top: 0; }
+#hamburger-menu span:nth-child(2) { top: 8px; }
+#hamburger-menu span:nth-child(3) { top: 16px; }
 
+/* --- Link Top --- */
 #link-top {
-    margin-top: 20px;
+    display: inline-block;
 }
+
 #triunghi {
     display: inline-block;
     width: 0; 
@@ -194,188 +196,71 @@ nav ul li:hover ul {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 15px solid var(--culoare-primara);
-    margin-right: 5px;
-}
-#link-top a {
-    text-decoration: none;
-    color: var(--culoare-primara);
-    font-weight: bold;
+    margin-right: 8px;
 }
 
-
+/* --- Media Queries (Desktop to Mobile) --- */
 @media screen and (max-width: 768px) {
     :root {
         --spatiere-laterala: 2%;
         --gap-grid: 10px;
     }
-    nav ul {
+    
+    img, video, iframe {
+        width: 100%; /* Ocupă mai mult spațiu pe mobil */
+    }
+
+    #hamburger-menu {
+        display: block; 
+        animation: aparitieHamburger 0.5s ease-out forwards;
+    }
+    
+    .nav-principal {
+        display: none; /* Ascundem meniul pe mobil by default */
         flex-direction: column;
-    }
-    #tab-orar {
-        font-size: 14px;
-        display: block;
-        overflow-x: auto;
-    }
-}
-
-
-@media print {
-    body {
-        background-color: white;
-        color: black;
-        padding: 0;
+        text-align: center;
     }
 
-    header nav, footer, #container-video, #resurse-vizuale, #link-top, iframe {
-        display: none !important;
-    }
-    section, article {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        page-break-inside: avoid;
-    }
-    a {
-        text-decoration: none;
-        color: black;
+    /* Dacă folosim un mic JS pentru a adăuga clasa .arata-meniu pe <nav> la click pe hamburger */
+    nav.arata-meniu .nav-principal {
+        display: flex;
     }
 
-    a[href]::after {
-        content: " (" attr(href) ")";
-        font-size: 0.8em;
+    .sub-nav {
+        position: static;
+        display: flex;
+        background-color: rgba(0,0,0,0.1); /* Fundal diferit pe mobil */
     }
 }
 
+@keyframes aparitieHamburger {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 
-
+/* --- Media Print --- */
 @media print {
     body {
         background-color: white;
         color: black;
         font-size: 12pt;
+        padding: 0;
     }
 
-
-    header nav, 
-    #container-video, 
-    iframe, 
-    footer {
+    header nav, #container-video, iframe, footer, #link-top, .form-switch, #hamburger-menu {
         display: none !important;
     }
 
-
     section {
-        box-shadow: none;
-        border: 1px solid #ccc;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
         page-break-inside: avoid; 
+        background-color: white !important;
     }
-
-    main {
-        margin: 0;
-    }
-
 
     a[href]::after {
         content: " (" attr(href) ")";
         font-size: 0.9em;
         color: #555;
     }
-}
-
-#hamburger-menu {
-    display: none; /* Ascuns pe desktop */
-    position: relative;
-    width: 35px;
-    height: 25px;
-    cursor: pointer;
-    margin-left: auto; /* Îl împingem în dreapta */
-}
-
-#hamburger-menu span {
-    position: absolute;
-    height: 4px;
-    width: 100%;
-    background-color: var(--culoare-text);
-    border-radius: 4px;
-    left: 0;
-}
-
-#hamburger-menu span:nth-child(1) { top: 0; }
-#hamburger-menu span:nth-child(2) { top: 10px; }
-#hamburger-menu span:nth-child(3) { top: 20px; }
-
-@media screen and (max-width: 700px) {
-    #hamburger-menu {
-            display: block; 
-            animation: aparitieHamburger 1s ease-out forwards;
-        }
-        
-    
-    nav ul {
-            display: none; 
-        }
-}
-
-@keyframes aparitieHamburger {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) rotate(-10deg);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(5px) rotate(5deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg);
-    }
-}
-
-
-
-header {
-    display: flex;
-    flex-wrap: wrap; 
-    align-items: center; 
-    justify-content: flex-start; 
-}
-
-
-header > img {
-    width: 65px !important; 
-    min-width: unset !important;
-    margin: 0 15px 0 0 !important; 
-    order: 1; 
-    border-radius: 0; 
-}
-
-
-header > h1 {
-    order: 2; 
-    margin: 0; 
-    font-size: 2.2em;
-}
-
-
-#hamburger-menu {
-    order: 3;
-    margin-left: auto; 
-}
-
-
-header > nav {
-    order: 4; 
-    width: 100%; 
-    margin-top: 20px; 
-}
-
-
-[data-theme="dark"] {
-    --culoare-primara: #427ebf; 
-    --culoare-secundara: #ffb77d; 
-    --culoare-text: #e0e0e0;
-    --culoare-fundal: #121212;
-    --culoare-containere: #1e1e1e;
-    --culoare-border: #444444;
-    --culoare-tabel-par: #2a2a2a;
-    --culoare-tabel-impar: #1e1e1e;
 }
