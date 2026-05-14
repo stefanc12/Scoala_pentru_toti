@@ -6,6 +6,13 @@
     --culoare-primara: #2b5c8f; 
     --culoare-secundara: #f4a261; 
     --culoare-text: #333333;
+
+    --culoare-fundal: #f4f4f9; 
+    --culoare-containere: #ffffff; 
+    --culoare-border: #ddd; 
+    --culoare-tabel-par: #f2f2f2;
+    --culoare-tabel-impar: #ffffff;
+
     --spatiere-laterala: 5%; 
     --gap-grid: 20px;
     --padding-zone: 20px;
@@ -36,7 +43,7 @@ body {
 
 
 header, footer, section {
-    background-color: white;
+    background-color: var(--culoare-containere);
     padding: var(--padding-zone);
     border-radius: var(--raza-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -113,7 +120,7 @@ nav ul li ul {
     min-width: 150px;
 }
 
-/* Afisare submeniu la hover */
+
 nav ul li:hover ul {
     display: flex;
 }
@@ -359,4 +366,16 @@ header > nav {
     order: 4; 
     width: 100%; 
     margin-top: 20px; 
+}
+
+
+[data-theme="dark"] {
+    --culoare-primara: #427ebf; 
+    --culoare-secundara: #ffb77d; 
+    --culoare-text: #e0e0e0;
+    --culoare-fundal: #121212;
+    --culoare-containere: #1e1e1e;
+    --culoare-border: #444444;
+    --culoare-tabel-par: #2a2a2a;
+    --culoare-tabel-impar: #1e1e1e;
 }
