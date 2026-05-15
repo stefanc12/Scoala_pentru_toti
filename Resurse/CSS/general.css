@@ -38,10 +38,10 @@ body {
     margin: 0;
     padding: 0 var(--spatiere-laterala);
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s; /* Tranzitie lina pt Dark Mode */
+    transition: background-color 0.3s, color 0.3s; 
 }
 
-/* --- Layout Grid Principal --- */
+
 #grid-pagina {
     display: grid;
     grid-template-columns: 1fr;
@@ -50,7 +50,7 @@ body {
     padding-bottom: var(--gap-grid);
 }
 
-/* --- Izolare Vizuala (Etapa 2) --- */
+
 header, footer, section.card-info, .hero-banner {
     background-color: var(--culoare-containere);
     padding: var(--padding-zone);
@@ -71,11 +71,11 @@ footer {
     border-bottom: 5px solid var(--culoare-primara);
 }
 
-/* --- Elemente Media (Etapa 2) --- */
+
 img, video, iframe {
     max-width: 100%;
     width: 80%;
-    min-width: 250px; /* Limita inferioară */
+    min-width: 250px; 
     display: block;
     margin: 10px auto;
     border-radius: var(--raza-border);
@@ -88,7 +88,7 @@ img, video, iframe {
     margin: 0 auto;
 }
 
-/* --- Navigare --- */
+
 nav {
     width: 100%;
     margin-top: 15px;
@@ -125,7 +125,7 @@ nav {
     padding-bottom: 5px; 
 }
 
-/* Sub-meniu Dropdown */
+
 .sub-nav {
     display: none;
     position: absolute;
@@ -147,7 +147,7 @@ nav {
     display: flex;
 }
 
-/* --- Taburi Iframe --- */
+
 .container-iframe {
     display: flex;
     flex-direction: column;
@@ -162,7 +162,7 @@ nav {
     flex-wrap: wrap;
 }
 
-/* --- Meniu Hamburger --- */
+
 #hamburger-menu {
     display: none;
     position: relative;
@@ -184,7 +184,7 @@ nav {
 #hamburger-menu span:nth-child(2) { top: 8px; }
 #hamburger-menu span:nth-child(3) { top: 16px; }
 
-/* --- Link Top --- */
+
 #link-top {
     display: inline-block;
 }
@@ -199,7 +199,7 @@ nav {
     margin-right: 8px;
 }
 
-/* --- Media Queries (Desktop to Mobile) --- */
+
 @media screen and (max-width: 768px) {
     :root {
         --spatiere-laterala: 2%;
@@ -207,7 +207,7 @@ nav {
     }
     
     img, video, iframe {
-        width: 100%; /* Ocupă mai mult spațiu pe mobil */
+        width: 100%; 
     }
 
     #hamburger-menu {
@@ -216,12 +216,12 @@ nav {
     }
     
     .nav-principal {
-        display: none; /* Ascundem meniul pe mobil by default */
+        display: none; 
         flex-direction: column;
         text-align: center;
     }
 
-    /* Dacă folosim un mic JS pentru a adăuga clasa .arata-meniu pe <nav> la click pe hamburger */
+
     nav.arata-meniu .nav-principal {
         display: flex;
     }
@@ -238,7 +238,7 @@ nav {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Media Print --- */
+
 @media print {
     body {
         background-color: white;
