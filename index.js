@@ -346,7 +346,7 @@ app.get('/cont', async (req, res) => {
         connection = await oracledb.getConnection(dbConfig);
         const userId = req.session.utilizator.ID_UTILIZATOR;
 
-        // 1. Aducem cursurile salvate (pentru toată lumea)
+
         const cursuriSalvate = await connection.execute(
             `SELECT c.TITLU, c.ID_CURS FROM CURSURI_SALVATE cs 
              JOIN CURSURI c ON cs.ID_CURS = c.ID_CURS 
