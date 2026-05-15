@@ -1,7 +1,7 @@
-<header style="display: flex; flex-direction: column; padding: 0; border-top: none; background-color: var(--culoare-containere);">
+<header class="header-principal">
     
     <div style="padding: 15px 5%; width: 100%; text-align: left;">
-        <img src="/resurse/imagini/sigla.png" alt="Sigla Școala pentru toți" onclick="location.href='/'" style="height: 80px; width: auto; margin: 0; cursor: pointer; border-radius: 0;">
+        <img id="logo-site" src="/resurse/imagini/sigla.png" alt="Sigla Școala pentru toți" onclick="location.href='/'">
     </div>
 
     <nav style="width: 100%; background: linear-gradient(90deg, var(--culoare-primara) 0%, #4a90e2 100%); margin-top: 0; padding: 0 5%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -33,45 +33,3 @@
         </div>
     </nav>
 </header>
-<style>
-    
-    .logo-link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: inherit;
-        width : fit-content;
-        padding: 5px 0;
-        gap : 5px;
-    }
-
-    #logo-site {
-        height: 65px; 
-        width: auto;
-        flex-shrink: 0;
-        object-fit: contain;
-        margin-right: 0px;
-        transition: transform 0.3s ease;
-    }
-
-    #logo-site:hover {
-        transform: scale(1.05); 
-    }
-
-    #titlu-site {
-        font-size: 1.8rem; 
-        margin: 0;
-        line-height: 1.2;
-        white-space: nowrap; 
-    }
-
-    
-    @media screen and (max-width: 600px) {
-        #logo-site {
-            height: 50px;
-        }
-        #titlu-site {
-            font-size: 1.3rem;
-        }
-    }
-</style>
